@@ -1,1033 +1,500 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Χρυσά Αυγά</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --gold: #C8A951;
-    --gold-light: #E8D48B;
-    --gold-dark: #A88B2E;
-    --brown: #5C3D1E;
-    --cream: #FDF8ED;
-    --white: #FFFFFF;
-    --dark: #2C2C2C;
-    --gray: #777777;
-    --green-dark: #3A5F3A;
-    --green-light: #7CB342;
-    --hero-overlay: rgba(44, 44, 44, 0.45);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Manrope', sans-serif;
-    color: var(--dark);
-    background: var(--white);
-    overflow-x: hidden;
-  }
-
-  a { text-decoration: none; color: inherit; }
-  ul { list-style: none; }
-  img { max-width: 100%; display: block; }
-
-  /* ===== HEADER / NAV ===== */
-  .header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    background: rgba(255,255,255,0.97);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-    transition: background 0.3s;
-  }
-
-  .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    height: 80px;
-  }
-
-  .logo-area {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .logo-area img {
-    height: 50px;
-  }
-
-  .years-badge {
-    height: 42px;
-    opacity: 0.9;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .nav-links > li {
-    position: relative;
-  }
-
-  .nav-links > li > a {
-    display: block;
-    padding: 10px 16px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: var(--dark);
-    transition: color 0.2s;
-    border-radius: 6px;
-  }
-
-  .nav-links > li > a:hover {
-    color: var(--gold-dark);
-    background: rgba(200,169,81,0.08);
-  }
-
-  .nav-links > li:hover .dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--white);
-    border-radius: 10px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-    min-width: 240px;
-    padding: 10px 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px);
-    transition: all 0.25s ease;
-  }
-
-  .dropdown li a {
-    display: block;
-    padding: 10px 22px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--dark);
-    transition: all 0.15s;
-  }
-
-  .dropdown li a:hover {
-    background: var(--cream);
-    color: var(--gold-dark);
-    padding-left: 28px;
-  }
-
-  .nav-social {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-left: 16px;
-  }
-
-  .nav-social a {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: var(--gold);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    transition: all 0.2s;
-  }
-
-  .nav-social a:hover {
-    background: var(--gold-dark);
-    transform: scale(1.1);
-  }
-
-  .lang-switcher {
-    display: flex;
-    gap: 8px;
-    margin-left: 12px;
-  }
-
-  .lang-switcher span {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: 1px solid #ddd;
-  }
-
-  .lang-switcher span.active {
-    background: var(--gold);
-    color: white;
-    border-color: var(--gold);
-  }
-
-  .mobile-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 8px;
-  }
-
-  .mobile-toggle span {
-    width: 24px;
-    height: 2px;
-    background: var(--dark);
-    border-radius: 2px;
-    transition: 0.3s;
-  }
-
-  /* ===== HERO ===== */
-  .hero {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    background: linear-gradient(135deg, #fbe8a6 0%, #f4d35e 30%, #c8a951 60%, #a88b2e 100%);
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(168,139,46,0.3) 0%, transparent 50%);
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 24px;
-    animation: fadeInUp 1s ease;
-  }
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-logo {
-    width: 180px;
-    margin: 0 auto 32px;
-    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.15));
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4.5vw, 52px);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.25;
-    text-shadow: 0 2px 30px rgba(0,0,0,0.2);
-    margin-bottom: 20px;
-  }
-
-  .hero-subtitle {
-    font-size: 17px;
-    color: rgba(255,255,255,0.9);
-    font-weight: 400;
-    letter-spacing: 0.3px;
-  }
-
-  .hero-egg {
-    position: absolute;
-    bottom: -60px;
-    right: 8%;
-    width: 220px;
-    opacity: 0.12;
-    animation: floatEgg 6s ease-in-out infinite;
-  }
-
-  @keyframes floatEgg {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-  }
-
-  .scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    animation: bounce 2s infinite;
-  }
-
-  .scroll-indicator svg {
-    width: 28px;
-    height: 28px;
-    stroke: rgba(255,255,255,0.7);
-    stroke-width: 2;
-    fill: none;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(10px); }
-  }
-
-  /* ===== SECTIONS GENERAL ===== */
-  .section {
-    padding: 90px 24px;
-  }
-
-  .section-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(24px, 3vw, 36px);
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 50px;
-    color: var(--brown);
-    position: relative;
-  }
-
-  .section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--gold);
-    margin: 14px auto 0;
-    border-radius: 2px;
-  }
-
-  /* ===== INFO CARDS (3 columns) ===== */
-  .info-cards {
-    background: var(--cream);
-  }
-
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-
-  .info-card {
-    background: var(--white);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-    cursor: pointer;
-  }
-
-  .info-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 50px rgba(0,0,0,0.12);
-  }
-
-  .info-card-img {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #fdf8ed, #f5ecd0);
-    padding: 20px;
-  }
-
-  .info-card-img img {
-    max-height: 180px;
-    object-fit: contain;
-    transition: transform 0.4s ease;
-  }
-
-  .info-card:hover .info-card-img img {
-    transform: scale(1.05);
-  }
-
-  .info-card-body {
-    padding: 24px 22px 28px;
-  }
-
-  .info-card-body h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--brown);
-    margin-bottom: 10px;
-    line-height: 1.35;
-  }
-
-  .info-card-body p {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.65;
-    margin-bottom: 16px;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 10px 24px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 8px;
-    transition: all 0.25s ease;
-  }
-
-  .btn-gold {
-    background: var(--gold);
-    color: var(--white);
-  }
-
-  .btn-gold:hover {
-    background: var(--gold-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(200,169,81,0.4);
-  }
-
-  .btn-outline {
-    border: 2px solid var(--gold);
-    color: var(--gold-dark);
-    background: transparent;
-  }
-
-  .btn-outline:hover {
-    background: var(--gold);
-    color: var(--white);
-  }
-
-  /* ===== INNOVATIONS ===== */
-  .innovations {
-    background: var(--green-dark);
-    color: var(--white);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .innovations-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 60px;
-  }
-
-  .innovations-text {
-    flex: 1;
-  }
-
-  .innovations-badge {
-    max-width: 260px;
-    margin-bottom: 24px;
-    filter: brightness(1.1);
-  }
-
-  .innovations h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-
-  .innovations-img {
-    flex: 0 0 320px;
-  }
-
-  .innovations-img img {
-    max-height: 400px;
-    object-fit: contain;
-    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
-    animation: chickenBob 4s ease-in-out infinite;
-  }
-
-  @keyframes chickenBob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-
-  /* ===== RECIPES ===== */
-  .recipes {
-    background: var(--white);
-  }
-
-  .recipes-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-bottom: 40px;
-  }
-
-  .recipe-card {
-    background: var(--cream);
-    border-radius: 14px;
-    padding: 28px 26px;
-    transition: all 0.3s ease;
-    border-left: 4px solid var(--gold);
-    cursor: pointer;
-  }
-
-  .recipe-card:hover {
-    background: #faf3de;
-    transform: translateX(6px);
-    box-shadow: 0 6px 24px rgba(200,169,81,0.15);
-  }
-
-  .recipe-card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--brown);
-    margin-bottom: 12px;
-    line-height: 1.4;
-  }
-
-  .recipe-card .recipe-link {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--gold-dark);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: gap 0.2s;
-  }
-
-  .recipe-card:hover .recipe-link {
-    gap: 10px;
-  }
-
-  .center-btn {
-    text-align: center;
-  }
-
-  /* ===== PRODUCTS ===== */
-  .products {
-    background: var(--cream);
-  }
-
-  .products-carousel {
-    display: flex;
-    gap: 28px;
-    overflow-x: auto;
-    padding-bottom: 20px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .products-carousel::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .products-carousel::-webkit-scrollbar-track {
-    background: #eee;
-    border-radius: 3px;
-  }
-
-  .products-carousel::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 3px;
-  }
-
-  .product-card {
-    flex: 0 0 200px;
-    scroll-snap-align: start;
-    background: var(--white);
-    border-radius: 14px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 36px rgba(0,0,0,0.1);
-  }
-
-  .product-card-img {
-    height: 160px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 14px;
-  }
-
-  .product-card-img img {
-    max-height: 140px;
-    object-fit: contain;
-    transition: transform 0.35s;
-  }
-
-  .product-card:hover .product-card-img img {
-    transform: scale(1.08);
-  }
-
-  .product-card h6 {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--brown);
-    line-height: 1.4;
-  }
-
-  /* ===== FOOTER ===== */
-  .footer {
-    background: var(--dark);
-    color: rgba(255,255,255,0.8);
-    padding: 60px 24px 30px;
-  }
-
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .footer-top {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-
-  .footer-logo {
-    max-width: 160px;
-    margin-bottom: 16px;
-    filter: brightness(1.2);
-  }
-
-  .footer-col h5 {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--gold-light);
-    margin-bottom: 16px;
-  }
-
-  .footer-col ul li {
-    margin-bottom: 10px;
-  }
-
-  .footer-col ul li a {
-    font-size: 13px;
-    color: rgba(255,255,255,0.65);
-    transition: all 0.2s;
-  }
-
-  .footer-col ul li a:hover {
-    color: var(--gold-light);
-    padding-left: 4px;
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 10px;
-    margin-top: 16px;
-  }
-
-  .footer-social a {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.25s;
-    color: rgba(255,255,255,0.7);
-  }
-
-  .footer-social a:hover {
-    background: var(--gold);
-    color: white;
-    transform: scale(1.1);
-  }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 12px;
-    color: rgba(255,255,255,0.4);
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 900px) {
-    .cards-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .innovations-inner {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .innovations-img { flex: none; }
-    .innovations-img img { max-height: 280px; margin: 0 auto; }
-
-    .recipes-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .footer-top {
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-
-    .nav-links, .nav-social, .lang-switcher {
-      display: none;
-    }
-
-    .mobile-toggle {
-      display: flex;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .header-inner { height: 64px; }
-    .logo-area img { height: 38px; }
-    .years-badge { height: 32px; }
-    .hero { min-height: 500px; }
-    .section { padding: 60px 18px; }
-    .footer-top { grid-template-columns: 1fr; }
-  }
-
-  /* ===== EGG SVG DECORATIONS ===== */
-  .egg-decoration {
-    position: absolute;
-    opacity: 0.06;
-    pointer-events: none;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Farm Eggs - Premium Quality Eggs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #DAA520;
+            --accent: #228B22;
+            --light: #FFF8DC;
+            --white: #FFFFFF;
+            --dark: #2F4F2F;
+            --gray: #708090;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 4px;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            padding: 4px 8px;
+            border: 1px solid var(--gray);
+            background: transparent;
+            color: var(--dark);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--secondary);
+            color: var(--dark);
+            border-color: var(--secondary);
+        }
+
+        .lang-btn:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        /* Language content */
+        .content-en { display: block; }
+        .content-gr { display: none; }
+        .lang-gr .content-en { display: none; }
+        .lang-gr .content-gr { display: block; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: white;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* Features */
+        .features {
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            background: var(--light);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Products Preview */
+        .products-preview {
+            background: var(--light);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #FFE4B5, #DEB887);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .product-info h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav class="container">
+            <div class="logo">Fresh Farm <span>Eggs</span></div>
+            <ul>
+                <li><a href="index.html" class="content-en">Home</a></li>
+                <li><a href="index.html" class="content-gr">Αρχική</a></li>
+                <li><a href="about.html" class="content-en">About</a></li>
+                <li><a href="about.html" class="content-gr">Σχετικά</a></li>
+                <li><a href="products.html" class="content-en">Products</a></li>
+                <li><a href="products.html" class="content-gr">Προϊόντα</a></li>
+                <li><a href="recipes.html" class="content-en">Recipes</a></li>
+                <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
+                <li><a href="contact.html" class="content-en">Contact</a></li>
+                <li><a href="contact.html" class="content-gr">Επικοινωνία</a></li>
+                <li class="lang-toggle">
+                    <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="setLanguage('gr')">GR</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-inner">
-    <div class="logo-area">
-      <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/06/GOLDEN-EGGS-LOGO.png" alt="Golden Eggs Logo">
-      <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/06/70yearsGoldenEggsLogo.png" alt="70 Years" class="years-badge">
-    </div>
-
-    <nav>
-      <ul class="nav-links">
-        <li>
-          <a href="#">Η ΕΤΑΙΡΕΙΑ</a>
-          <ul class="dropdown">
-            <li><a href="#">Εταιρεία</a></li>
-            <li><a href="#">Ποιότητα</a></li>
-            <li><a href="#">Πιστοποιήσεις / Διακρίσεις</a></li>
-            <li><a href="#">Καινοτομίες</a></li>
-            <li><a href="#">Κοινωνική ευθύνη</a></li>
-            <li><a href="#">Οικονομικά στοιχεία</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">ΠΡΟΪΟΝΤΑ</a>
-          <ul class="dropdown">
-            <li><a href="#">Ειδικά</a></li>
-            <li><a href="#">Βιολογικά</a></li>
-            <li><a href="#">Φρέσκα</a></li>
-            <li><a href="#">Εξαιρετικά φρέσκα</a></li>
-            <li><a href="#">Προϊόντα ψυγείου</a></li>
-            <li><a href="#">Πασχαλινά</a></li>
-          </ul>
-        </li>
-        <li><a href="#">ΣΥΝΤΑΓΕΣ</a></li>
-        <li><a href="#">ΝΕΑ</a></li>
-        <li><a href="#">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
-      </ul>
-    </nav>
-
-    <div class="nav-social">
-      <a href="https://www.facebook.com/XrysaAvga" title="Facebook">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/goldeneggs.gr/" title="Instagram">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-      </a>
-      <a href="https://www.youtube.com/channel/UCFVEHDyEA4Pbt_-tANaAcXQ/videos" title="YouTube">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><path d="M9.75 15.02l5.75-3.27-5.75-3.27v6.54z" fill="white"/></svg>
-      </a>
-    </div>
-
-    <div class="lang-switcher">
-      <span>EN</span>
-      <span class="active">ΕΛ</span>
-    </div>
-
-    <div class="mobile-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <svg class="egg-decoration" style="width:400px;top:10%;left:-100px;transform:rotate(15deg)" viewBox="0 0 200 260"><ellipse cx="100" cy="140" rx="90" ry="120" fill="white"/></svg>
-  <svg class="egg-decoration" style="width:250px;bottom:5%;right:-50px;transform:rotate(-20deg)" viewBox="0 0 200 260"><ellipse cx="100" cy="140" rx="90" ry="120" fill="white"/></svg>
-
-  <div class="hero-content">
-    <img class="hero-logo" src="https://www.golden-eggs.gr/wp-content/uploads/2021/06/GOLDEN-EGGS-LOGO-1.png" alt="Golden Eggs">
-    <h1>Αυτό που πραγματικά χρειάζεσαι, για εκείνους που αγαπάς, αληθινά!</h1>
-    <p class="hero-subtitle">Χρυσά Αυγά — Ποιότητα & Παράδοση από το 1955</p>
-  </div>
-
-  <div class="scroll-indicator">
-    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-  </div>
-</section>
-
-<!-- INFO CARDS -->
-<section class="section info-cards" id="about">
-  <div class="section-inner">
-    <div class="cards-grid">
-      <!-- Card 1 -->
-      <div class="info-card">
-        <div class="info-card-img">
-          <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/06/chrisa-avga-kathemera.png" alt="Κάθε μέρα">
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="content-en">Fresh Farm Eggs</h1>
+            <h1 class="content-gr">Φρέσκα Αυγά Φάρμας</h1>
+            <p class="content-en">Premium quality eggs from our family farm to your table</p>
+            <p class="content-gr">Αυγά premium ποιότητας από τη φάρμα μας στην οικογένειά σας</p>
+            <a href="products.html" class="btn content-en">Shop Our Eggs</a>
+            <a href="products.html" class="btn content-gr">Αγοράστε τα Αυγά μας</a>
         </div>
-        <div class="info-card-body">
-          <h3>Κάθε μέρα το καλύτερο αυγό στο τραπέζι σας!</h3>
-          <p>Καθημερινά, για πάνω από μισό αιώνα, ένας συνεχής αγώνας για να έχετε τα καλύτερα Ελληνικά Αυγά στο τραπέζι σας.</p>
-          <a href="#" class="btn btn-gold">ΠΕΡΙΣΣΟΤΕΡΑ ΕΔΩ</a>
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="info-card">
-        <div class="info-card-img">
-          <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/06/thauma-tis-fisis.png" alt="Θαύμα της φύσης">
-        </div>
-        <div class="info-card-body">
-          <h3>Αυγό, το θαύμα της φύσης</h3>
-          <p>Μια αξεπέραστη και διαχρονική διατροφική αξία, προσιτή στο καταναλωτικό κοινό με τις καλύτερες προδιαγραφές.</p>
-          <a href="#" class="btn btn-gold">ΠΕΡΙΣΣΟΤΕΡΑ ΕΔΩ</a>
-        </div>
-      </div>
-      <!-- Card 3 -->
-      <div class="info-card">
-        <div class="info-card-img">
-          <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/06/chrisoulis.png" alt="Χρυσούλης">
-        </div>
-        <div class="info-card-body">
-          <h3>Είμαι ο Χρυσούλης. Γνωρίστε με!</h3>
-          <p>Και θα με βλέπετε πολύ συχνά γιατί έχω όμορφα πράγματα να πω!</p>
-          <a href="#" class="btn btn-gold">ΠΕΡΙΣΣΟΤΕΡΑ ΕΔΩ</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- INNOVATIONS -->
-<section class="section innovations">
-  <div class="innovations-inner">
-    <div class="innovations-text">
-      <img class="innovations-badge" src="https://www.golden-eggs.gr/wp-content/uploads/2021/06/DEN-KATHOMASTE-LOGO.png" alt="Δεν καθόμαστε">
-      <h3>Οι καινοτομίες μας</h3>
-      <p style="color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:24px;">Πρωτοπορούμε διαρκώς με νέα προϊόντα και τεχνολογίες παραγωγής, πάντα με σεβασμό στη φύση και τον καταναλωτή.</p>
-      <a href="#" class="btn btn-gold">ΠΕΡΙΣΣΟΤΕΡΑ ΕΔΩ</a>
-    </div>
-    <div class="innovations-img">
-      <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/06/home-chicken.png" alt="Chicken">
-    </div>
-  </div>
-</section>
+    <section class="section features">
+        <div class="container">
+            <h2 class="content-en">Why Choose Our Eggs?</h2>
+            <h2 class="content-gr">Γιατί να Επιλέξετε τα Αυγά μας;</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🥚</div>
+                    <h3 class="content-en">Fresh Daily</h3>
+                    <h3 class="content-gr">Φρέσκα Καθημερινά</h3>
+                    <p class="content-en">Our eggs are collected fresh every morning from our free-range hens.</p>
+                    <p class="content-gr">Τα αυγά μας συλλέγονται φρέσκα κάθε πρωί από τις ελεύθερες κότες μας.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3 class="content-en">Natural Feed</h3>
+                    <h3 class="content-gr">Φυσική Τροφή</h3>
+                    <p class="content-en">Our chickens are fed with natural grains and have access to pasture.</p>
+                    <p class="content-gr">Οι κότες μας τρέφονται με φυσικά δημητριακά και έχουν πρόσβαση σε βοσκότοπους.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3 class="content-en">Premium Quality</h3>
+                    <h3 class="content-gr">Premium Ποιότητα</h3>
+                    <p class="content-en">Only the highest quality eggs make it to your table.</p>
+                    <p class="content-gr">Μόνο τα αυγά υψηλότερης ποιότητας φτάνουν στο τραπέζι σας.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- RECIPES -->
-<section class="section recipes" id="recipes">
-  <div class="section-inner">
-    <h2 class="section-title">Οι πιο νόστιμες συνταγές μας!</h2>
-    <div class="recipes-grid">
-      <div class="recipe-card">
-        <h4>Αλμυρά σουδάκια με κρέμα φέτας & σάλτσα ψητής πιπεριάς</h4>
-        <span class="recipe-link">ΔΕΙΤΕ ΤΗ ΣΥΝΤΑΓΗ →</span>
-      </div>
-      <div class="recipe-card">
-        <h4>Κέικ τσουρέκι</h4>
-        <span class="recipe-link">ΔΕΙΤΕ ΤΗ ΣΥΝΤΑΓΗ →</span>
-      </div>
-      <div class="recipe-card">
-        <h4>Κέικ με γεύση τσουρέκι</h4>
-        <span class="recipe-link">ΔΕΙΤΕ ΤΗ ΣΥΝΤΑΓΗ →</span>
-      </div>
-      <div class="recipe-card">
-        <h4>Brookie με σοκολάτα!</h4>
-        <span class="recipe-link">ΔΕΙΤΕ ΤΗ ΣΥΝΤΑΓΗ →</span>
-      </div>
-    </div>
-    <div class="center-btn">
-      <a href="#" class="btn btn-outline">ΔΕΙΤΕ ΟΛΕΣ ΤΙΣ ΣΥΝΤΑΓΕΣ</a>
-    </div>
-  </div>
-</section>
+    <section class="section products-preview">
+        <div class="container">
+            <h2 class="content-en">Our Popular Products</h2>
+            <h2 class="content-gr">Τα Δημοφιλή Προϊόντα μας</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🥚</div>
+                    <div class="product-info">
+                        <h4 class="content-en">Free Range Eggs</h4>
+                        <h4 class="content-gr">Αυγά Ελεύθερης Βοσκής</h4>
+                        <p class="content-en">Large, Grade A eggs from happy hens</p>
+                        <p class="content-gr">Μεγάλα αυγά κατηγορίας Α από ευτυχισμένες κότες</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🌿</div>
+                    <div class="product-info">
+                        <h4 class="content-en">Organic Eggs</h4>
+                        <h4 class="content-gr">Βιολογικά Αυγά</h4>
+                        <p class="content-en">Certified organic, no pesticides or chemicals</p>
+                        <p class="content-gr">Πιστοποιημένα βιολογικά, χωρίς φυτοφάρμακα ή χημικά</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💪</div>
+                    <div class="product-info">
+                        <h4 class="content-en">Omega-3 Eggs</h4>
+                        <h4 class="content-gr">Αυγά με Ωμέγα-3</h4>
+                        <p class="content-en">Enhanced with omega-3 fatty acids</p>
+                        <p class="content-gr">Εμπλουτισμένα με ωμέγα-3 λιπαρά οξέα</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="products.html" class="btn content-en">View All Products</a>
+                <a href="products.html" class="btn content-gr">Δείτε Όλα τα Προϊόντα</a>
+            </div>
+        </div>
+    </section>
 
-<!-- PRODUCTS -->
-<section class="section products" id="products">
-  <div class="section-inner">
-    <h2 class="section-title">Τα εκλεκτά προϊόντα μας!</h2>
-    <div class="products-carousel">
-      <div class="product-card">
-        <div class="product-card-img">
-          <img src="https://www.golden-eggs.gr/wp-content/uploads/2022/09/white-egg.png" alt="100% Ασπράδι">
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="content-en">Fresh Farm Eggs</h3>
+                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας</h3>
+                    <p class="content-en">Delivering fresh, quality eggs to your community since 2020.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην κοινότητά σας από το 2020.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="content-en">Quick Links</h3>
+                    <h3 class="content-gr">Γρήγοροι Σύνδεσμοι</h3>
+                    <ul>
+                        <li><a href="about.html" class="content-en">About Us</a></li>
+                        <li><a href="about.html" class="content-gr">Σχετικά με Εμάς</a></li>
+                        <li><a href="products.html" class="content-en">Our Products</a></li>
+                        <li><a href="products.html" class="content-gr">Τα Προϊόντα μας</a></li>
+                        <li><a href="recipes.html" class="content-en">Recipes</a></li>
+                        <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
+                        <li><a href="contact.html" class="content-en">Contact</a></li>
+                        <li><a href="contact.html" class="content-gr">Επικοινωνία</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="content-en">Contact Info</h3>
+                    <h3 class="content-gr">Στοιχεία Επικοινωνίας</h3>
+                    <p>📞 (555) 123-4567</p>
+                    <p>📧 info@freshfarmeggs.com</p>
+                    <p class="content-en">📍 123 Farm Road, Countryside</p>
+                    <p class="content-gr">📍 123 Δρόμος Φάρμας, Εξοχή</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="content-en">&copy; 2024 Fresh Farm Eggs. All rights reserved.</p>
+                <p class="content-gr">&copy; 2024 Φρέσκα Αυγά Φάρμας. Όλα τα δικαιώματα διατηρούνται.</p>
+            </div>
         </div>
-        <h6>100% Ασπράδι</h6>
-      </div>
-      <div class="product-card">
-        <div class="product-card-img">
-          <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/09/avga-bio-imeras.png" alt="Bio ημέρας">
-        </div>
-        <h6>Bio ημέρας</h6>
-      </div>
-      <div class="product-card">
-        <div class="product-card-img">
-          <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/09/avga-viologika-skourtis.png" alt="Βιολογικά Ελαιών Σκούρτη">
-        </div>
-        <h6>Αυγά Βιολογικά Ελαιών Σκούρτη με Ω3</h6>
-      </div>
-      <div class="product-card">
-        <div class="product-card-img">
-          <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/09/avga-viologika-6.png" alt="Βιολογικά 6άδα">
-        </div>
-        <h6>Αυγά Βιολογικά 6άδα</h6>
-      </div>
-      <div class="product-card">
-        <div class="product-card-img">
-          <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/09/%CE%95%CE%9B-%CE%92%CE%9F%CE%A3%CE%9A%CE%97%CE%A3_%CE%A93_%CE%BA%CF%8D%CF%81%CE%B9%CE%B1-%CF%8C%CF%88%CE%B7.png" alt="Ελευθέρας Βοσκής">
-        </div>
-        <h6>Αυγά Ελευθέρας Βοσκής με Ω3</h6>
-      </div>
-      <div class="product-card">
-        <div class="product-card-img">
-          <img src="https://www.golden-eggs.gr/wp-content/uploads/2021/10/VD%CE%A93-1.png" alt="Βιταμίνης D">
-        </div>
-        <h6>Βιταμίνης D & Omega 3</h6>
-      </div>
-    </div>
-    <div class="center-btn" style="margin-top: 36px;">
-      <a href="#" class="btn btn-gold">ΔΕΙΤΕ ΟΛΑ ΤΑ ΠΡΟΪΟΝΤΑ</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-col">
-        <img class="footer-logo" src="https://www.golden-eggs.gr/wp-content/uploads/2021/06/GOLDEN-EGGS-LOGO.png" alt="Golden Eggs">
-        <p style="font-size:13px;line-height:1.65;color:rgba(255,255,255,0.5);margin-top:12px;">Ποιότητα & παράδοση στο ελληνικό αυγό από το 1955.</p>
-        <div class="footer-social">
-          <a href="https://www.facebook.com/XrysaAvga" title="Facebook">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/goldeneggs.gr/" title="Instagram">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
-          </a>
-          <a href="#" title="YouTube">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><path d="M9.75 15.02l5.75-3.27-5.75-3.27v6.54z" fill="white"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h5>Πλοήγηση</h5>
-        <ul>
-          <li><a href="#">Η εταιρεία</a></li>
-          <li><a href="#">Προϊόντα</a></li>
-          <li><a href="#">Συνταγές</a></li>
-          <li><a href="#">Νέα</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Ανακαλύψτε</h5>
-        <ul>
-          <li><a href="#">Είμαι ο Χρυσούλης</a></li>
-          <li><a href="#">Το θαύμα της φύσης!</a></li>
-          <li><a href="#">Ποιότητα</a></li>
-          <li><a href="#">Καινοτομίες</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Πληροφορίες</h5>
-        <ul>
-          <li><a href="#">Επικοινωνία</a></li>
-          <li><a href="#">Όροι χρήσης</a></li>
-          <li><a href="#">Πολιτική απορρήτου</a></li>
-          <li><a href="#">Διαγραφή δεδομένων</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>Copyright 2025 golden-eggs.gr, All rights reserved</span>
-      <a href="https://www.youtube.com/watch?v=awnFtBInM4U" style="color:var(--gold-light);font-size:12px;">Δείτε τις διαφημιστικές μας ταινίες →</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Simple mobile menu toggle
-  document.querySelector('.mobile-toggle')?.addEventListener('click', function() {
-    const nav = document.querySelector('.nav-links');
-    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    nav.style.flexDirection = 'column';
-    nav.style.position = 'absolute';
-    nav.style.top = '100%';
-    nav.style.left = '0';
-    nav.style.right = '0';
-    nav.style.background = 'white';
-    nav.style.padding = '20px';
-    nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-    nav.style.borderRadius = '0 0 12px 12px';
-  });
-
-  // Smooth scroll offset for fixed header
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href !== '#') {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
+    </footer>
+    <script>
+        function setLanguage(lang) {
+            document.body.className = lang === 'gr' ? 'lang-gr' : '';
+            localStorage.setItem('language', lang);
+            updateLanguageButtons(lang);
         }
-      }
-    });
-  });
-</script>
 
+        function updateLanguageButtons(activeLang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.lang-btn[onclick="setLanguage('${activeLang}')"]`).classList.add('active');
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('language') || 'en';
+            setLanguage(savedLang);
+        });
+    </script>
 </body>
 </html>
