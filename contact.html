@@ -109,11 +109,28 @@
             color: var(--dark);
         }
 
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--dark);
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        .menu-toggle:focus {
+            outline: none;
+        }
+
+        nav {
+            position: relative;
+        }
+
         /* Language content */
-        .content-en { display: block; }
-        .content-gr { display: none; }
-        .lang-gr .content-en { display: none; }
-        .lang-gr .content-gr { display: block; }
+        body:not(.lang-gr) .content-en { display: block !important; }
+        body:not(.lang-gr) .content-gr { display: none !important; }
+        body.lang-gr .content-en { display: none !important; }
+        body.lang-gr .content-gr { display: block !important; }
 
         /* Hero Section */
         .hero {
@@ -346,8 +363,47 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                align-items: center;
+            }
+
             nav ul {
                 display: none;
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+                background: var(--white);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                padding: 1rem;
+                border-radius: 0 0 16px 16px;
+                box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            }
+
+            nav ul.open {
+                display: flex;
+            }
+
+            nav li {
+                width: 100%;
+            }
+
+            nav a {
+                width: 100%;
+                padding: 0.9rem 1rem;
+                border-radius: 12px;
+            }
+
+            .lang-toggle {
+                width: 100%;
+                justify-content: flex-start;
+                margin: 1rem 0 0;
             }
 
             .hero h1 {
@@ -373,10 +429,11 @@
         }
     </style>
 </head>
-<body>
+<body class="lang-gr">
     <header>
         <nav class="container">
             <div class="logo">Fresh Farm <span>Eggs</span></div>
+            <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
             <ul>
                 <li><a href="index.html" class="content-en">Home</a></li>
                 <li><a href="index.html" class="content-gr">Αρχική</a></li>
@@ -389,8 +446,8 @@
                 <li><a href="contact.html" class="active content-en">Contact</a></li>
                 <li><a href="contact.html" class="active content-gr">Επικοινωνία</a></li>
                 <li class="lang-toggle">
-                    <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
-                    <button class="lang-btn" onclick="setLanguage('gr')">GR</button>
+                    <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn active" onclick="setLanguage('gr')">GR</button>
                 </li>
             </ul>
         </nav>
@@ -589,6 +646,10 @@
             updateLanguageButtons(lang);
         }
 
+        function toggleMenu() {
+            document.querySelector('nav ul').classList.toggle('open');
+        }
+
         function updateLanguageButtons(activeLang) {
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
@@ -598,7 +659,7 @@
 
         // Load saved language preference
         document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('language') || 'en';
+            const savedLang = localStorage.getItem('language') || 'gr';
             setLanguage(savedLang);
         });
     </script>
