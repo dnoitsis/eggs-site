@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egg Recipes - Fresh Farm Eggs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #DAA520;
+            --accent: #228B22;
+            --light: #FFF8DC;
+            --white: #FFFFFF;
+            --dark: #2F4F2F;
+            --gray: #708090;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary);
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 4px;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            padding: 4px 8px;
+            border: 1px solid var(--gray);
+            background: transparent;
+            color: var(--dark);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--secondary);
+            color: var(--dark);
+            border-color: var(--secondary);
+        }
+
+        .lang-btn:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        /* Language content */
+        .content-en { display: block; }
+        .content-gr { display: none; }
+        .lang-gr .content-en { display: none; }
+        .lang-gr .content-gr { display: block; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* Recipes */
+        .recipes {
+            background: var(--white);
+        }
+
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .recipe-card {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .recipe-image {
+            height: 200px;
+            background: linear-gradient(45deg, #FFE4B5, #DEB887);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .recipe-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .recipe-info {
+            padding: 2rem;
+        }
+
+        .recipe-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .recipe-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .recipe-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .recipe-info p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .recipe-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: var(--accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--secondary);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .recipes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Fresh Farm <span>Eggs</span></div>
+            <ul>
+                <li><a href="index.html" class="content-en">Home</a></li>
+                <li><a href="index.html" class="content-gr">Αρχική</a></li>
+                <li><a href="about.html" class="content-en">About</a></li>
+                <li><a href="about.html" class="content-gr">Σχετικά</a></li>
+                <li><a href="products.html" class="content-en">Products</a></li>
+                <li><a href="products.html" class="content-gr">Προϊόντα</a></li>
+                <li><a href="recipes.html" class="active content-en">Recipes</a></li>
+                <li><a href="recipes.html" class="active content-gr">Συνταγές</a></li>
+                <li><a href="contact.html" class="content-en">Contact</a></li>
+                <li><a href="contact.html" class="content-gr">Επικοινωνία</a></li>
+                <li class="lang-toggle">
+                    <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="setLanguage('gr')">GR</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="content-en">Egg-cellent Recipes</h1>
+            <h1 class="content-gr">Εξαιρετικές Συνταγές με Αυγά</h1>
+            <p class="content-en">Discover delicious ways to enjoy our fresh farm eggs</p>
+            <p class="content-gr">Ανακαλύψτε νόστιμους τρόπους να απολαμβάνετε τα φρέσκα αυγά της φάρμας μας</p>
+        </div>
+    </section>
+
+    <section class="section recipes">
+        <div class="container">
+            <h2 class="content-en">Featured Egg Recipes</h2>
+            <h2 class="content-gr">Επιλεγμένες Συνταγές με Αυγά</h2>
+            <div class="recipes-grid">
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        🥞
+                        <div class="recipe-badge content-en">Breakfast</div>
+                        <div class="recipe-badge content-gr">Πρωινό</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="content-en">Fluffy Buttermilk Pancakes</h3>
+                        <h3 class="content-gr">Απαλά Τηγανίτες με Γάλα</h3>
+                        <div class="recipe-meta">
+                            <span>⏱️ 25 mins</span>
+                            <span>👥 4 servings</span>
+                            <span>🥚 2 eggs</span>
+                        </div>
+                        <p class="content-en">Light and fluffy pancakes that melt in your mouth. Perfect for weekend brunch with our fresh farm eggs.</p>
+                        <p class="content-gr">Ελαφριοί και απαλοί τηγανίτες που λιώνουν στο στόμα. Ιδανικοί για πρωινό του Σαββατοκύριακου με τα φρέσκα αυγά της φάρμας μας.</p>
+                        <div class="recipe-tags">
+                            <span class="tag content-en">Sweet</span>
+                            <span class="tag content-gr">Γλυκό</span>
+                            <span class="tag content-en">Breakfast</span>
+                            <span class="tag content-gr">Πρωινό</span>
+                            <span class="tag content-en">Easy</span>
+                            <span class="tag content-gr">Εύκολο</span>
+                        </div>
+                        <a href="#recipe1" class="btn content-en">Get Recipe</a>
+                        <a href="#recipe1" class="btn content-gr">Πάρτε τη Συνταγή</a>
+                    </div>
+                </div>
+
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        🥗
+                        <div class="recipe-badge content-en">Healthy</div>
+                        <div class="recipe-badge content-gr">Υγιεινό</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="content-en">Avocado Egg Salad</h3>
+                        <h3 class="content-gr">Σαλάτα Αυγού με Αβοκάντο</h3>
+                        <div class="recipe-meta">
+                            <span>⏱️ 15 mins</span>
+                            <span>👥 2 servings</span>
+                            <span>🥚 4 eggs</span>
+                        </div>
+                        <p class="content-en">Creamy avocado egg salad with fresh herbs. A healthy, protein-packed meal using our organic eggs.</p>
+                        <p class="content-gr">Κρεμώδης σαλάτα αυγού με αβοκάντο και φρέσκα βότανα. Ένα υγιεινό, πλούσιο σε πρωτεΐνες γεύμα με τα βιολογικά αυγά μας.</p>
+                        <div class="recipe-tags">
+                            <span class="tag content-en">Healthy</span>
+                            <span class="tag content-gr">Υγιεινό</span>
+                            <span class="tag content-en">Quick</span>
+                            <span class="tag content-gr">Γρήγορο</span>
+                            <span class="tag content-en">Lunch</span>
+                            <span class="tag content-gr">Μεσημεριανό</span>
+                        </div>
+                        <a href="#recipe2" class="btn content-en">Get Recipe</a>
+                        <a href="#recipe2" class="btn content-gr">Πάρτε τη Συνταγή</a>
+                    </div>
+                </div>
+
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        🍰
+                        <div class="recipe-badge content-en">Dessert</div>
+                        <div class="recipe-badge content-gr">Επιδόρπιο</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="content-en">Chocolate Soufflé</h3>
+                        <h3 class="content-gr">Σουφλέ Σοκολάτας</h3>
+                        <div class="recipe-meta">
+                            <span>⏱️ 45 mins</span>
+                            <span>👥 6 servings</span>
+                            <span>🥚 6 eggs</span>
+                        </div>
+                        <p class="content-en">Decadent chocolate soufflé that rises to perfection. Our fresh eggs provide the perfect structure and richness.</p>
+                        <p class="content-gr">Πολυτελές σουφλέ σοκολάτας που ανεβαίνει στην τελειότητα. Τα φρέσκα αυγά μας παρέχουν την τέλεια δομή και πλούτο.</p>
+                        <div class="recipe-tags">
+                            <span class="tag content-en">Dessert</span>
+                            <span class="tag content-gr">Επιδόρπιο</span>
+                            <span class="tag content-en">Elegant</span>
+                            <span class="tag content-gr">Επιτηδευμένο</span>
+                            <span class="tag content-en">Chocolate</span>
+                            <span class="tag content-gr">Σοκολάτα</span>
+                        </div>
+                        <a href="#recipe3" class="btn content-en">Get Recipe</a>
+                        <a href="#recipe3" class="btn content-gr">Πάρτε τη Συνταγή</a>
+                    </div>
+                </div>
+
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        🥘
+                        <div class="recipe-badge content-en">Dinner</div>
+                        <div class="recipe-badge content-gr">Δείπνο</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="content-en">Shakshuka with Eggs</h3>
+                        <h3 class="content-gr">Σακσούκα με Αυγά</h3>
+                        <div class="recipe-meta">
+                            <span>⏱️ 30 mins</span>
+                            <span>👥 4 servings</span>
+                            <span>🥚 6 eggs</span>
+                        </div>
+                        <p class="content-en">Middle Eastern spiced tomato stew with perfectly poached eggs. A flavorful dinner using our free-range eggs.</p>
+                        <p class="content-gr">Μεσανατολική μπαχαρική σάλτσα ντομάτας με τέλεια βραστά αυγά. Ένα γευστικό δείπνο με τα ελεύθερα αυγά μας.</p>
+                        <div class="recipe-tags">
+                            <span class="tag content-en">Spicy</span>
+                            <span class="tag content-gr">Πικάντικο</span>
+                            <span class="tag content-en">Dinner</span>
+                            <span class="tag content-gr">Δείπνο</span>
+                            <span class="tag content-en">International</span>
+                            <span class="tag content-gr">Διεθνές</span>
+                        </div>
+                        <a href="#recipe4" class="btn content-en">Get Recipe</a>
+                        <a href="#recipe4" class="btn content-gr">Πάρτε τη Συνταγή</a>
+                    </div>
+                </div>
+
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        🥖
+                        <div class="recipe-badge content-en">Baking</div>
+                        <div class="recipe-badge content-gr">Ψήσιμο</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="content-en">Homemade Mayonnaise</h3>
+                        <h3 class="content-gr">Σπιτική Μαγιονέζα</h3>
+                        <div class="recipe-meta">
+                            <span>⏱️ 10 mins</span>
+                            <span>👥 1 cup</span>
+                            <span>🥚 2 eggs</span>
+                        </div>
+                        <p class="content-en">Rich, creamy homemade mayonnaise using our fresh eggs. Perfect for sandwiches and dressings.</p>
+                        <p class="content-gr">Πλούσια, κρεμώδης σπιτική μαγιονέζα με τα φρέσκα αυγά μας. Τέλεια για σάντουιτς και σάλτσες.</p>
+                        <div class="recipe-tags">
+                            <span class="tag content-en">Condiment</span>
+                            <span class="tag content-gr">Κοντίσιον</span>
+                            <span class="tag content-en">Easy</span>
+                            <span class="tag content-gr">Εύκολο</span>
+                            <span class="tag content-en">Homemade</span>
+                            <span class="tag content-gr">Σπιτικό</span>
+                        </div>
+                        <a href="#recipe5" class="btn content-en">Get Recipe</a>
+                        <a href="#recipe5" class="btn content-gr">Πάρτε τη Συνταγή</a>
+                    </div>
+                </div>
+
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        🥧
+                        <div class="recipe-badge content-en">Dessert</div>
+                        <div class="recipe-badge content-gr">Επιδόρπιο</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="content-en">Lemon Meringue Pie</h3>
+                        <h3 class="content-gr">Πίτα Λεμονιού με Μέρινγκα</h3>
+                        <div class="recipe-meta">
+                            <span>⏱️ 60 mins</span>
+                            <span>👥 8 servings</span>
+                            <span>🥚 4 eggs</span>
+                        </div>
+                        <p class="content-en">Tangy lemon filling topped with fluffy meringue. Our eggs create the perfect texture for this classic dessert.</p>
+                        <p class="content-gr">Ξινή γέμιση λεμονιού καλυμμένη με απαλή μέρινγκα. Τα αυγά μας δημιουργούν την τέλεια υφή για αυτό το κλασικό επιδόρπιο.</p>
+                        <div class="recipe-tags">
+                            <span class="tag content-en">Citrus</span>
+                            <span class="tag content-gr">Εσπεριδοειδή</span>
+                            <span class="tag content-en">Classic</span>
+                            <span class="tag content-gr">Κλασικό</span>
+                            <span class="tag content-en">Pie</span>
+                            <span class="tag content-gr">Πίτα</span>
+                        </div>
+                        <a href="#recipe6" class="btn content-en">Get Recipe</a>
+                        <a href="#recipe6" class="btn content-gr">Πάρτε τη Συνταγή</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--gray);" class="content-en">
+                    Looking for more inspiration? Check back regularly for new recipes featuring our fresh farm eggs!
+                </p>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--gray);" class="content-gr">
+                    Ψάχνετε για περισσότερη έμπνευση; Ελέγξτε τακτικά για νέες συνταγές με τα φρέσκα αυγά της φάρμας μας!
+                </p>
+                <a href="contact.html" class="btn content-en">Share Your Recipe</a>
+                <a href="contact.html" class="btn content-gr">Μοιραστείτε τη Συνταγή σας</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="content-en">Fresh Farm Eggs</h3>
+                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας</h3>
+                    <p class="content-en">Delivering fresh, quality eggs to your community since 2020.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην κοινότητά σας από το 2020.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="content-en">Quick Links</h3>
+                    <h3 class="content-gr">Γρήγοροι Σύνδεσμοι</h3>
+                    <ul>
+                        <li><a href="about.html" class="content-en">About Us</a></li>
+                        <li><a href="about.html" class="content-gr">Σχετικά με Εμάς</a></li>
+                        <li><a href="products.html" class="content-en">Our Products</a></li>
+                        <li><a href="products.html" class="content-gr">Τα Προϊόντα μας</a></li>
+                        <li><a href="recipes.html" class="content-en">Recipes</a></li>
+                        <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
+                        <li><a href="contact.html" class="content-en">Contact</a></li>
+                        <li><a href="contact.html" class="content-gr">Επικοινωνία</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="content-en">Contact Info</h3>
+                    <h3 class="content-gr">Στοιχεία Επικοινωνίας</h3>
+                    <p>📞 (555) 123-4567</p>
+                    <p>📧 info@freshfarmeggs.com</p>
+                    <p class="content-en">📍 123 Farm Road, Countryside</p>
+                    <p class="content-gr">📍 123 Δρόμος Φάρμας, Εξοχή</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="content-en">&copy; 2024 Fresh Farm Eggs. All rights reserved.</p>
+                <p class="content-gr">&copy; 2024 Φρέσκα Αυγά Φάρμας. Όλα τα δικαιώματα διατηρούνται.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function setLanguage(lang) {
+            document.body.className = lang === 'gr' ? 'lang-gr' : '';
+            localStorage.setItem('language', lang);
+            updateLanguageButtons(lang);
+        }
+
+        function updateLanguageButtons(activeLang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.lang-btn[onclick="setLanguage('${activeLang}')"]`).classList.add('active');
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('language') || 'en';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
