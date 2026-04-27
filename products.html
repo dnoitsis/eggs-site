@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - Fresh Farm Eggs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #DAA520;
+            --accent: #228B22;
+            --light: #FFF8DC;
+            --white: #FFFFFF;
+            --dark: #2F4F2F;
+            --gray: #708090;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary);
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 4px;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            padding: 4px 8px;
+            border: 1px solid var(--gray);
+            background: transparent;
+            color: var(--dark);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--secondary);
+            color: var(--dark);
+            border-color: var(--secondary);
+        }
+
+        .lang-btn:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        /* Language content */
+        .content-en { display: block; }
+        .content-gr { display: none; }
+        .lang-gr .content-en { display: none; }
+        .lang-gr .content-gr { display: block; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* Products */
+        .products {
+            background: var(--white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(45deg, #FFE4B5, #DEB887);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .product-info .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .product-info p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--secondary);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Fresh Farm <span>Eggs</span></div>
+            <ul>
+                <li><a href="index.html" class="content-en">Home</a></li>
+                <li><a href="index.html" class="content-gr">Αρχική</a></li>
+                <li><a href="about.html" class="content-en">About</a></li>
+                <li><a href="about.html" class="content-gr">Σχετικά</a></li>
+                <li><a href="products.html" class="active content-en">Products</a></li>
+                <li><a href="products.html" class="active content-gr">Προϊόντα</a></li>
+                <li><a href="recipes.html" class="content-en">Recipes</a></li>
+                <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
+                <li><a href="contact.html" class="content-en">Contact</a></li>
+                <li><a href="contact.html" class="content-gr">Επικοινωνία</a></li>
+                <li class="lang-toggle">
+                    <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="setLanguage('gr')">GR</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="content-en">Our Premium Egg Products</h1>
+            <h1 class="content-gr">Τα Premium Προϊόντα Αυγών μας</h1>
+            <p class="content-en">Discover our range of fresh, high-quality eggs</p>
+            <p class="content-gr">Ανακαλύψτε την γκάμα μας από φρέσκα, υψηλής ποιότητας αυγά</p>
+        </div>
+    </section>
+
+    <section class="section products">
+        <div class="container">
+            <h2 class="content-en">Choose Your Perfect Eggs</h2>
+            <h2 class="content-gr">Επιλέξτε τα Ιδανικά σας Αυγά</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        🥚
+                        <div class="product-badge content-en">Most Popular</div>
+                        <div class="product-badge content-gr">Πιο Δημοφιλές</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="content-en">Free Range Eggs</h3>
+                        <h3 class="content-gr">Αυγά Ελεύθερης Βοσκής</h3>
+                        <div class="price">$6.99/dozen</div>
+                        <p class="content-en">Large, Grade A eggs from our free-range hens that enjoy outdoor access and natural foraging.</p>
+                        <p class="content-gr">Μεγάλα αυγά κατηγορίας Α από τις ελεύθερες κότες μας που απολαμβάνουν εξωτερική πρόσβαση και φυσική βοσκή.</p>
+                        <ul class="product-features">
+                            <li class="content-en">Fresh daily collection</li>
+                            <li class="content-gr">Φρέσκια καθημερινή συλλογή</li>
+                            <li class="content-en">Rich golden yolks</li>
+                            <li class="content-gr">Πλούσια χρυσά κρόκοι</li>
+                            <li class="content-en">Perfect for all cooking</li>
+                            <li class="content-gr">Ιδανικά για κάθε μαγείρεμα</li>
+                            <li class="content-en">No antibiotics or hormones</li>
+                            <li class="content-gr">Χωρίς αντιβιοτικά ή ορμόνες</li>
+                        </ul>
+                        <a href="#contact" class="btn content-en">Order Now</a>
+                        <a href="#contact" class="btn content-gr">Παραγγείλτε Τώρα</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        🌿
+                        <div class="product-badge content-en">Organic</div>
+                        <div class="product-badge content-gr">Βιολογικό</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="content-en">Organic Eggs</h3>
+                        <h3 class="content-gr">Βιολογικά Αυγά</h3>
+                        <div class="price">$8.49/dozen</div>
+                        <p class="content-en">Certified organic eggs from hens fed only organic feed, raised without synthetic pesticides or fertilizers.</p>
+                        <p class="content-gr">Πιστοποιημένα βιολογικά αυγά από κότες που τρέφονται μόνο με βιολογική τροφή, ανατραφόμενες χωρίς συνθετικά φυτοφάρμακα ή λιπάσματα.</p>
+                        <ul class="product-features">
+                            <li class="content-en">USDA Organic Certified</li>
+                            <li class="content-gr">Πιστοποιημένο USDA Organic</li>
+                            <li class="content-en">100% organic feed</li>
+                            <li class="content-gr">100% βιολογική τροφή</li>
+                            <li class="content-en">No synthetic chemicals</li>
+                            <li class="content-gr">Χωρίς συνθετικά χημικά</li>
+                            <li class="content-en">Enhanced nutrition</li>
+                            <li class="content-gr">Ενισχυμένη διατροφή</li>
+                        </ul>
+                        <a href="#contact" class="btn content-en">Order Now</a>
+                        <a href="#contact" class="btn content-gr">Παραγγείλτε Τώρα</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        💪
+                        <div class="product-badge content-en">Premium</div>
+                        <div class="product-badge content-gr">Premium</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="content-en">Omega-3 Eggs</h3>
+                        <h3 class="content-gr">Αυγά με Ωμέγα-3</h3>
+                        <div class="price">$7.99/dozen</div>
+                        <p class="content-en">Enriched with omega-3 fatty acids from flaxseed in the hens' diet for heart-healthy benefits.</p>
+                        <p class="content-gr">Εμπλουτισμένα με ωμέγα-3 λιπαρά οξέα από λιναρόσπορο στη διατροφή των κοτών για οφέλη υγιούς καρδιάς.</p>
+                        <ul class="product-features">
+                            <li class="content-en">High in omega-3s</li>
+                            <li class="content-gr">Υψηλά σε ωμέγα-3</li>
+                            <li class="content-en">Heart-healthy</li>
+                            <li class="content-gr">Υγιεινά για την καρδιά</li>
+                            <li class="content-en">Rich in DHA & EPA</li>
+                            <li class="content-gr">Πλούσια σε DHA & EPA</li>
+                            <li class="content-en">Great taste</li>
+                            <li class="content-gr">Εξαιρετική γεύση</li>
+                        </ul>
+                        <a href="#contact" class="btn content-en">Order Now</a>
+                        <a href="#contact" class="btn content-gr">Παραγγείλτε Τώρα</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        🥕
+                        <div class="product-badge content-en">Vegetarian</div>
+                        <div class="product-badge content-gr">Χορτοφαγικό</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="content-en">Vegetarian Fed Eggs</h3>
+                        <h3 class="content-gr">Αυγά με Χορτοφαγική Διατροφή</h3>
+                        <div class="price">$7.49/dozen</div>
+                        <p class="content-en">Eggs from hens fed a vegetarian diet rich in grains, seeds, and vegetables for optimal nutrition.</p>
+                        <p class="content-gr">Αυγά από κότες που τρέφονται με χορτοφαγική διατροφή πλούσια σε δημητριακά, σπόρους και λαχανικά για βέλτιστη διατροφή.</p>
+                        <ul class="product-features">
+                            <li class="content-en">Vegetarian feed only</li>
+                            <li class="content-gr">Μόνο χορτοφαγική τροφή</li>
+                            <li class="content-en">No animal by-products</li>
+                            <li class="content-gr">Χωρίς ζωικά υποπροϊόντα</li>
+                            <li class="content-en">High in vitamins</li>
+                            <li class="content-gr">Υψηλά σε βιταμίνες</li>
+                            <li class="content-en">Sustainable choice</li>
+                            <li class="content-gr">Βιώσιμη επιλογή</li>
+                        </ul>
+                        <a href="#contact" class="btn content-en">Order Now</a>
+                        <a href="#contact" class="btn content-gr">Παραγγείλτε Τώρα</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        🥚
+                        <div class="product-badge content-en">Specialty</div>
+                        <div class="product-badge content-gr">Ειδικότητα</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="content-en">Brown Eggs</h3>
+                        <h3 class="content-gr">Καφέ Αυγά</h3>
+                        <div class="price">$6.99/dozen</div>
+                        <p class="content-en">Beautiful brown-shelled eggs with the same great taste and nutrition as our white eggs.</p>
+                        <p class="content-gr">Όμορφα καφέ κελύφη αυγών με την ίδια εξαιρετική γεύση και διατροφή όπως τα λευκά αυγά μας.</p>
+                        <ul class="product-features">
+                            <li class="content-en">Distinctive brown shells</li>
+                            <li class="content-gr">Διακριτικά καφέ κελύφη</li>
+                            <li class="content-en">Same great taste</li>
+                            <li class="content-gr">Ίδια εξαιρετική γεύση</li>
+                            <li class="content-en">Fresh and nutritious</li>
+                            <li class="content-gr">Φρέσκα και θρεπτικά</li>
+                            <li class="content-en">Perfect for baking</li>
+                            <li class="content-gr">Ιδανικά για ψήσιμο</li>
+                        </ul>
+                        <a href="#contact" class="btn content-en">Order Now</a>
+                        <a href="#contact" class="btn content-gr">Παραγγείλτε Τώρα</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        🥚
+                        <div class="product-badge content-en">Bulk</div>
+                        <div class="product-badge content-gr">Χονδρική</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="content-en">Wholesale Eggs</h3>
+                        <h3 class="content-gr">Αυγά Χονδρικής</h3>
+                        <div class="price">$5.99/dozen</div>
+                        <p class="content-en">Perfect for restaurants, bakeries, and large households. Same quality, better pricing.</p>
+                        <p class="content-gr">Ιδανικά για εστιατόρια, αρτοποιεία και μεγάλες οικογένειες. Ίδια ποιότητα, καλύτερες τιμές.</p>
+                        <ul class="product-features">
+                            <li class="content-en">Bulk pricing available</li>
+                            <li class="content-gr">Διαθέσιμες τιμές χονδρικής</li>
+                            <li class="content-en">Consistent quality</li>
+                            <li class="content-gr">Σταθερή ποιότητα</li>
+                            <li class="content-en">Reliable supply</li>
+                            <li class="content-gr">Αξιόπιστος εφοδιασμός</li>
+                            <li class="content-en">Custom packaging</li>
+                            <li class="content-gr">Προσαρμοσμένη συσκευασία</li>
+                        </ul>
+                        <a href="#contact" class="btn content-en">Contact for Wholesale</a>
+                        <a href="#contact" class="btn content-gr">Επικοινωνήστε για Χονδρική</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="content-en">Fresh Farm Eggs</h3>
+                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας</h3>
+                    <p class="content-en">Delivering fresh, quality eggs to your community since 2020.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην κοινότητά σας από το 2020.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="content-en">Quick Links</h3>
+                    <h3 class="content-gr">Γρήγοροι Σύνδεσμοι</h3>
+                    <ul>
+                        <li><a href="about.html" class="content-en">About Us</a></li>
+                        <li><a href="about.html" class="content-gr">Σχετικά με Εμάς</a></li>
+                        <li><a href="products.html" class="content-en">Our Products</a></li>
+                        <li><a href="products.html" class="content-gr">Τα Προϊόντα μας</a></li>
+                        <li><a href="recipes.html" class="content-en">Recipes</a></li>
+                        <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
+                        <li><a href="contact.html" class="content-en">Contact</a></li>
+                        <li><a href="contact.html" class="content-gr">Επικοινωνία</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="content-en">Contact Info</h3>
+                    <h3 class="content-gr">Στοιχεία Επικοινωνίας</h3>
+                    <p>📞 (555) 123-4567</p>
+                    <p>📧 info@freshfarmeggs.com</p>
+                    <p class="content-en">📍 123 Farm Road, Countryside</p>
+                    <p class="content-gr">📍 123 Δρόμος Φάρμας, Εξοχή</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="content-en">&copy; 2024 Fresh Farm Eggs. All rights reserved.</p>
+                <p class="content-gr">&copy; 2024 Φρέσκα Αυγά Φάρμας. Όλα τα δικαιώματα διατηρούνται.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function setLanguage(lang) {
+            document.body.className = lang === 'gr' ? 'lang-gr' : '';
+            localStorage.setItem('language', lang);
+            updateLanguageButtons(lang);
+        }
+
+        function updateLanguageButtons(activeLang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.lang-btn[onclick="setLanguage('${activeLang}')"]`).classList.add('active');
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('language') || 'en';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
