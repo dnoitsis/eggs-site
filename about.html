@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Fresh Farm Eggs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #DAA520;
+            --accent: #228B22;
+            --light: #FFF8DC;
+            --white: #FFFFFF;
+            --dark: #2F4F2F;
+            --gray: #708090;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary);
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 4px;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            padding: 4px 8px;
+            border: 1px solid var(--gray);
+            background: transparent;
+            color: var(--dark);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--secondary);
+            color: var(--dark);
+            border-color: var(--secondary);
+        }
+
+        .lang-btn:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        /* Language content */
+        .content-en { display: block; }
+        .content-gr { display: none; }
+        .lang-gr .content-en { display: none; }
+        .lang-gr .content-gr { display: block; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* About Content */
+        .about-content {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            height: 400px;
+            background: linear-gradient(45deg, #FFE4B5, #DEB887);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        /* Values */
+        .values {
+            background: var(--light);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .value-card h4 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Fresh Farm <span>Eggs</span></div>
+            <ul>
+                <li><a href="index.html" class="content-en">Home</a></li>
+                <li><a href="index.html" class="content-gr">Αρχική</a></li>
+                <li><a href="about.html" class="active content-en">About</a></li>
+                <li><a href="about.html" class="active content-gr">Σχετικά</a></li>
+                <li><a href="products.html" class="content-en">Products</a></li>
+                <li><a href="products.html" class="content-gr">Προϊόντα</a></li>
+                <li><a href="recipes.html" class="content-en">Recipes</a></li>
+                <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
+                <li><a href="contact.html" class="content-en">Contact</a></li>
+                <li><a href="contact.html" class="content-gr">Επικοινωνία</a></li>
+                <li class="lang-toggle">
+                    <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="setLanguage('gr')">GR</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="content-en">About Fresh Farm Eggs</h1>
+            <h1 class="content-gr">Σχετικά με τα Φρέσκα Αυγά Φάρμας</h1>
+            <p class="content-en">Learn about our family farm and commitment to quality</p>
+            <p class="content-gr">Μάθετε για τη φάρμα της οικογένειάς μας και την αφοσίωσή μας στην ποιότητα</p>
+        </div>
+    </section>
+
+    <section class="section about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3 class="content-en">Our Family Farm Story</h3>
+                    <h3 class="content-gr">Η Ιστορία της Φάρμας της Οικογένειάς μας</h3>
+                    <p class="content-en">Founded in 2020, Fresh Farm Eggs began as a small family operation with just a few dozen chickens. Today, we're proud to be a leading provider of premium quality eggs in our community, maintaining the same commitment to excellence that started it all.</p>
+                    <p class="content-gr">Ιδρύθηκε το 2020, τα Φρέσκα Αυγά Φάρμας ξεκίνησαν ως μια μικρή οικογενειακή επιχείρηση με μόλις λίγες δεκάδες κότες. Σήμερα, είμαστε περήφανοι που είμαστε κορυφαίος προμηθευτής αυγών premium ποιότητας στην κοινότητά μας, διατηρώντας την ίδια αφοσίωση στην αριστεία που ξεκίνησε τα πάντα.</p>
+                    <p class="content-en">Our farm spans over 50 acres of beautiful countryside, where our chickens roam freely in spacious coops and pasture areas. We believe that happy, healthy chickens produce the best eggs, and that's why we prioritize their welfare above all else.</p>
+                    <p class="content-gr">Η φάρμα μας εκτείνεται σε περισσότερα από 50 στρέμματα όμορφης εξοχής, όπου οι κότες μας περιφέρονται ελεύθερα σε ευρύχωρα κοτέτσια και περιοχές βοσκής. Πιστεύουμε ότι ευτυχισμένες, υγιείς κότες παράγουν τα καλύτερα αυγά, και γι' αυτό προτεραιοποιούμε την ευημερία τους πάνω από όλα.</p>
+                    <p class="content-en">Every morning, our eggs are collected by hand and delivered fresh to local stores and restaurants. We never use artificial hormones, antibiotics, or pesticides, ensuring that our eggs are as natural as they come.</p>
+                    <p class="content-gr">Κάθε πρωί, τα αυγά μας συλλέγονται με το χέρι και παραδίδονται φρέσκα σε τοπικά καταστήματα και εστιατόρια. Δεν χρησιμοποιούμε ποτέ τεχνητές ορμόνες, αντιβιοτικά ή φυτοφάρμακα, διασφαλίζοντας ότι τα αυγά μας είναι τόσο φυσικά όσο μπορούν να είναι.</p>
+                </div>
+                <div class="about-image">
+                    🏡
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section values">
+        <div class="container">
+            <h2 class="content-en">Our Values</h2>
+            <h2 class="content-gr">Οι Αξίες μας</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <h4 class="content-en">Sustainability</h4>
+                    <h4 class="content-gr">Αειφορία</h4>
+                    <p class="content-en">We practice sustainable farming methods that protect the environment and ensure the health of our land for future generations.</p>
+                    <p class="content-gr">Πρακτική αειφόρων μεθόδων γεωργίας που προστατεύουν το περιβάλλον και διασφαλίζουν την υγεία της γης μας για τις μελλοντικές γενιές.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h4 class="content-en">Animal Welfare</h4>
+                    <h4 class="content-gr">Ευημερία Ζώων</h4>
+                    <p class="content-en">Our chickens are treated with respect and care, living in conditions that allow them to express their natural behaviors.</p>
+                    <p class="content-gr">Οι κότες μας αντιμετωπίζονται με σεβασμό και φροντίδα, ζώντας σε συνθήκες που τους επιτρέπουν να εκφράζουν τις φυσικές τους συμπεριφορές.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⭐</div>
+                    <h4 class="content-en">Quality First</h4>
+                    <h4 class="content-gr">Ποιότητα Πρώτα</h4>
+                    <p class="content-en">We never compromise on quality. Every egg that leaves our farm meets our strict standards for freshness and nutrition.</p>
+                    <p class="content-gr">Δεν συμβιβαζόμαστε ποτέ στην ποιότητα. Κάθε αυγό που φεύγει από τη φάρμα μας πληροί τα αυστηρά μας πρότυπα για φρεσκάδα και διατροφή.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h4 class="content-en">Community</h4>
+                    <h4 class="content-gr">Κοινότητα</h4>
+                    <p class="content-en">We're proud to be part of our local community, supporting local businesses and contributing to the area's economy.</p>
+                    <p class="content-gr">Είμαστε περήφανοι που είμαστε μέρος της τοπικής μας κοινότητας, υποστηρίζοντας τοπικές επιχειρήσεις και συνεισφέροντας στην οικονομία της περιοχής.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="content-en">Fresh Farm Eggs</h3>
+                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας</h3>
+                    <p class="content-en">Delivering fresh, quality eggs to your community since 2020.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην κοινότητά σας από το 2020.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="content-en">Quick Links</h3>
+                    <h3 class="content-gr">Γρήγοροι Σύνδεσμοι</h3>
+                    <ul>
+                        <li><a href="about.html" class="content-en">About Us</a></li>
+                        <li><a href="about.html" class="content-gr">Σχετικά με Εμάς</a></li>
+                        <li><a href="products.html" class="content-en">Our Products</a></li>
+                        <li><a href="products.html" class="content-gr">Τα Προϊόντα μας</a></li>
+                        <li><a href="recipes.html" class="content-en">Recipes</a></li>
+                        <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
+                        <li><a href="contact.html" class="content-en">Contact</a></li>
+                        <li><a href="contact.html" class="content-gr">Επικοινωνία</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="content-en">Contact Info</h3>
+                    <h3 class="content-gr">Στοιχεία Επικοινωνίας</h3>
+                    <p>📞 (555) 123-4567</p>
+                    <p>📧 info@freshfarmeggs.com</p>
+                    <p class="content-en">📍 123 Farm Road, Countryside</p>
+                    <p class="content-gr">📍 123 Δρόμος Φάρμας, Εξοχή</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="content-en">&copy; 2024 Fresh Farm Eggs. All rights reserved.</p>
+                <p class="content-gr">&copy; 2024 Φρέσκα Αυγά Φάρμας. Όλα τα δικαιώματα διατηρούνται.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function setLanguage(lang) {
+            document.body.className = lang === 'gr' ? 'lang-gr' : '';
+            localStorage.setItem('language', lang);
+            updateLanguageButtons(lang);
+        }
+
+        function updateLanguageButtons(activeLang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.lang-btn[onclick="setLanguage('${activeLang}')"]`).classList.add('active');
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('language') || 'en';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
