@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-en="About Us - Haholas Farm" data-gr="Σχετικά - Φάρμα Χαχόλα">Σχετικά - Φάρμα Χαχόλα</title>
+    <title data-en="About Us - Chacholas Farm" data-gr="Σχετικά - Φάρμα Χαχόλα">Σχετικά - Φάρμα Χαχόλα</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -83,6 +83,15 @@
 
         .logo-accent {
             color: var(--secondary);
+            transition: color 0.3s;
+        }
+
+        .logo:hover {
+            color: var(--secondary);
+        }
+
+        .logo:hover .logo-accent {
+            color: var(--primary);
         }
 
         nav ul {
@@ -212,6 +221,12 @@
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
             color: var(--primary);
+        }
+
+        .about-text .about-motto {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--accent);
         }
 
         .about-text p {
@@ -452,7 +467,7 @@
 <body class="lang-gr">
     <header>
         <nav class="container">
-            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Haholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
+            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Chacholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
             <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
             <ul>
                 <li><a href="index.html" class="content-en">Home</a></li>
@@ -484,14 +499,18 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-text">
-                    <h3 class="content-en">Our Family Farm Story</h3>
-                    <h3 class="content-gr">Η Ιστορία της Φάρμας της Οικογένειάς μας</h3>
-                    <p class="content-en">Founded in 2026, Fresh Farm Eggs began as a small family operation with just a few dozen chickens. Today, we're proud to be a leading provider of premium quality eggs in our community, maintaining the same commitment to excellence that started it all.</p>
-                    <p class="content-gr">Ιδρύθηκε το 2026, τα Φρέσκα Αυγά Φάρμας ξεκίνησαν ως μια μικρή οικογενειακή επιχείρηση με μόλις λίγες δεκάδες κότες. Σήμερα, είμαστε περήφανοι που είμαστε κορυφαίος προμηθευτής αυγών premium ποιότητας στην κοινότητά μας, διατηρώντας την ίδια αφοσίωση στην αριστεία που ξεκίνησε τα πάντα.</p>
-                    <p class="content-en">Our farm spans over 50 acres of beautiful countryside, where our chickens roam freely in spacious coops and pasture areas. We believe that happy, healthy chickens produce the best eggs, and that's why we prioritize their welfare above all else.</p>
-                    <p class="content-gr">Η φάρμα μας εκτείνεται σε περισσότερα από 50 στρέμματα όμορφης εξοχής, όπου οι κότες μας περιφέρονται ελεύθερα σε ευρύχωρα κοτέτσια και περιοχές βοσκής. Πιστεύουμε ότι ευτυχισμένες, υγιείς κότες παράγουν τα καλύτερα αυγά, και γι' αυτό προτεραιοποιούμε την ευημερία τους πάνω από όλα.</p>
-                    <p class="content-en">Every morning, our eggs are collected by hand and delivered fresh to local stores and restaurants. We never use artificial hormones, antibiotics, or pesticides, ensuring that our eggs are as natural as they come.</p>
-                    <p class="content-gr">Κάθε πρωί, τα αυγά μας συλλέγονται με το χέρι και παραδίδονται φρέσκα σε τοπικά καταστήματα και εστιατόρια. Δεν χρησιμοποιούμε ποτέ τεχνητές ορμόνες, αντιβιοτικά ή φυτοφάρμακα, διασφαλίζοντας ότι τα αυγά μας είναι τόσο φυσικά όσο μπορούν να είναι.</p>
+                    <h3 class="content-en">Who We Are</h3>
+                    <h3 class="content-gr">Ποιοι Είμαστε</h3>
+                    <p class="content-en">With a love for poultry farming and respect for the consumer, we produce fresh eggs with an emphasis on quality, safety and the proper care of our hens.</p>
+                    <p class="content-gr">Με αγάπη για την πτηνοτροφία και σεβασμό προς τον καταναλωτή, δραστηριοποιούμαστε στην παραγωγή φρέσκων αυγών, με έμφαση στην ποιότητα, την ασφάλεια και τη σωστή φροντίδα των ορνίθων μας.</p>
+                    <p class="content-en">At our poultry farm in Thessaloniki, we take care every day to maintain the right rearing conditions and hygiene, following all the necessary procedures to produce safe, high-quality eggs.</p>
+                    <p class="content-gr">Στο πτηνοτροφείο μας, στη Θεσσαλονίκη, φροντίζουμε καθημερινά για τις κατάλληλες συνθήκες εκτροφής και την υγιεινή του χώρου, ακολουθώντας τις απαραίτητες διαδικασίες για την παραγωγή ασφαλών και ποιοτικών αυγών.</p>
+                    <p class="content-en">From raising our hens to collecting and distributing the eggs, we pay attention to every stage of production. For us, quality is not just a feature of our product, but a daily commitment.</p>
+                    <p class="content-gr">Από την εκτροφή των ορνίθων έως τη συλλογή και τη διάθεση των αυγών, δίνουμε προσοχή σε κάθε στάδιο της παραγωγικής διαδικασίας. Για εμάς, η ποιότητα δεν είναι απλώς ένα χαρακτηριστικό του προϊόντος μας, αλλά μια καθημερινή δέσμευση.</p>
+                    <p class="content-en">Our goal is to offer a product that reaches your table fresh, consistently, and with the respect owed both to the consumer and to the production itself.</p>
+                    <p class="content-gr">Στόχος μας είναι να προσφέρουμε ένα προϊόν που φτάνει στο τραπέζι σας φρέσκο, με συνέπεια και με τον σεβασμό που αξίζει τόσο στον καταναλωτή όσο και στην ίδια την παραγωγή.</p>
+                    <p class="about-motto content-en">We produce with care. We choose quality. We deliver with consistency.</p>
+                    <p class="about-motto content-gr">Παράγουμε με φροντίδα. Επιλέγουμε την ποιότητα. Προσφέρουμε με συνέπεια.</p>
                 </div>
                 <div class="slider" id="farmSlider">
                     <img src="images/about/farm-1.jpg" alt="Οι κότες μας στο κοτέτσι" class="active">
@@ -549,10 +568,10 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <img src="images/logo.jpg" alt="Φάρμα Χαχόλα - Φρέσκα Αυγά" class="footer-logo">
-                    <h3 class="content-en">Fresh Haholas Farm Eggs</h3>
+                    <h3 class="content-en">Fresh Chacholas Farm Eggs</h3>
                     <h3 class="content-gr">Φρέσκα Αυγά Φάρμας Χαχόλα</h3>
                     <p class="content-en">Delivering fresh, quality eggs to Thessaloniki since 2026.</p>
-                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην θεσσαλονίκη από το 2026.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στη Θεσσαλονίκη από το 2026.</p>
                 </div>
                 <div class="footer-section">
                     <h3 class="content-en">Quick Links</h3>
@@ -569,14 +588,15 @@
                 <div class="footer-section">
                     <h3 class="content-en">Contact Info</h3>
                     <h3 class="content-gr">Στοιχεία Επικοινωνίας</h3>
-                    <p>📞 (555) 123-4567</p>
-                    <p>📧 info@freshfarmeggs.com</p>
-                    <p class="content-en">📍 123 Farm Road, Countryside</p>
-                    <p class="content-gr">📍 123 Δρόμος Φάρμας, Εξοχή</p>
+                    <p>📞 (+30) 6971596520</p>
+                    <p>📧 info@farmachacholas.gr</p>
+                    <a href="https://www.instagram.com/chacholas_egg_farm/" target="_blank" rel="noopener">📸 @chacholas_egg_farm</a>
+                    <p class="content-en">📍 Pentalofos, Thessaloniki</p>
+                    <p class="content-gr">📍 Πεντάλοφος, Θεσσαλονίκης</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="content-en">&copy; 2026 Fresh Haholas Farm Eggs. All rights reserved.</p>
+                <p class="content-en">&copy; 2026 Fresh Chacholas Farm Eggs. All rights reserved.</p>
                 <p class="content-gr">&copy; 2026 Φρέσκα Αυγά Φάρμας Χαχόλα. Όλα τα δικαιώματα διατηρούνται.</p>
             </div>
         </div>

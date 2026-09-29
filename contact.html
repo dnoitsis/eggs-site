@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-en="Contact - Haholas Farm" data-gr="Επικοινωνία - Φάρμα Χαχόλα">Επικοινωνία - Φάρμα Χαχόλα</title>
+    <title data-en="Contact - Chacholas Farm" data-gr="Επικοινωνία - Φάρμα Χαχόλα">Επικοινωνία - Φάρμα Χαχόλα</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -83,6 +83,15 @@
 
         .logo-accent {
             color: var(--secondary);
+            transition: color 0.3s;
+        }
+
+        .logo:hover {
+            color: var(--secondary);
+        }
+
+        .logo:hover .logo-accent {
+            color: var(--primary);
         }
 
         nav ul {
@@ -244,6 +253,16 @@
             line-height: 1.6;
         }
 
+        .contact-details a {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            color: var(--secondary);
+        }
+
         /* Contact Form */
         .contact-form {
             background: var(--light);
@@ -280,6 +299,27 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--secondary);
+        }
+
+        .botcheck {
+            display: none;
+        }
+
+        .form-status {
+            margin-top: 1rem;
+            padding: 0.9rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .form-status.success {
+            background: #e3f1e3;
+            color: var(--accent);
+        }
+
+        .form-status.error {
+            background: #fbe4e4;
+            color: #a12626;
         }
 
         .form-group textarea {
@@ -466,7 +506,7 @@
 <body class="lang-gr">
     <header>
         <nav class="container">
-            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Haholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
+            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Chacholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
             <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
             <ul>
                 <li><a href="index.html" class="content-en">Home</a></li>
@@ -487,7 +527,7 @@
 
     <section class="hero">
         <div class="container">
-            <h1 class="content-en">Contact Fresh Haholas Farm Eggs</h1>
+            <h1 class="content-en">Contact Fresh Chacholas Farm Eggs</h1>
             <h1 class="content-gr">Επικοινωνήστε με τα Φρέσκα Αυγά Φάρμας Χαχόλα</h1>
             <p class="content-en">Get in touch with us for fresh eggs and farm information</p>
             <p class="content-gr">Επικοινωνήστε μαζί μας για φρέσκα αυγά και πληροφορίες της φάρμας</p>
@@ -508,8 +548,8 @@
                         <div class="contact-details">
                             <h4 class="content-en">Address</h4>
                             <h4 class="content-gr">Διεύθυνση</h4>
-                            <p class="content-en">123 Farm Road<br>Countryside, ST 12345</p>
-                            <p class="content-gr">123 Δρόμος Φάρμας<br>Εξοχή, ST 12345</p>
+                            <p class="content-en">Pentalofos, Thessaloniki</p>
+                            <p class="content-gr">Πεντάλοφος, Θεσσαλονίκης</p>
                         </div>
                     </div>
 
@@ -518,7 +558,7 @@
                         <div class="contact-details">
                             <h4 class="content-en">Phone</h4>
                             <h4 class="content-gr">Τηλέφωνο</h4>
-                            <p>(555) 123-4567<br>Farm: (555) 123-4568</p>
+                            <p>(+30) 6971596520</p>
                         </div>
                     </div>
 
@@ -527,7 +567,14 @@
                         <div class="contact-details">
                             <h4 class="content-en">Email</h4>
                             <h4 class="content-gr">Email</h4>
-                            <p>info@freshfarmeggs.com<br>orders@freshfarmeggs.com</p>
+                            <p>info@farmachacholas.gr</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📸</div>
+                        <div class="contact-details">
+                            <h4>Instagram</h4>
+                            <p><a href="https://www.instagram.com/chacholas_egg_farm/" target="_blank" rel="noopener">@chacholas_egg_farm</a></p>
                         </div>
                     </div>
 
@@ -545,7 +592,11 @@
                 <div class="contact-form">
                     <h3 class="content-en">Send us a Message</h3>
                     <h3 class="content-gr">Στείλτε μας ένα Μήνυμα</h3>
-                    <form action="#" method="post">
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        <input type="hidden" name="subject" value="Νέο μήνυμα από την ιστοσελίδα - Φάρμα Χαχόλα">
+                        <input type="hidden" name="from_name" value="Φάρμα Χαχόλα - Ιστοσελίδα">
+                        <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off">
                         <div class="form-group">
                             <label for="name" class="content-en">Name *</label>
                             <label for="name" class="content-gr">Όνομα *</label>
@@ -561,17 +612,17 @@
                         <div class="form-group">
                             <label for="subject" class="content-en">Subject</label>
                             <label for="subject" class="content-gr">Θέμα</label>
-                            <select id="subject" name="subject">
+                            <select id="subject" name="topic">
                                 <option value="" class="content-en">Select a topic</option>
                                 <option value="" class="content-gr">Επιλέξτε ένα θέμα</option>
-                                <option value="order" class="content-en">Place an Order</option>
-                                <option value="order" class="content-gr">Κάντε μια Παραγγελία</option>
-                                <option value="wholesale" class="content-en">Wholesale Inquiry</option>
-                                <option value="wholesale" class="content-gr">Χονδρική Ερώτηση</option>
-                                <option value="feedback" class="content-en">Feedback</option>
-                                <option value="feedback" class="content-gr">Ανατροφοδότηση</option>
-                                <option value="other" class="content-en">Other</option>
-                                <option value="other" class="content-gr">Άλλο</option>
+                                <option value="Παραγγελία" class="content-en">Place an Order</option>
+                                <option value="Παραγγελία" class="content-gr">Κάντε μια Παραγγελία</option>
+                                <option value="Χονδρική" class="content-en">Wholesale Inquiry</option>
+                                <option value="Χονδρική" class="content-gr">Χονδρική Ερώτηση</option>
+                                <option value="Σχόλια" class="content-en">Feedback</option>
+                                <option value="Σχόλια" class="content-gr">Ανατροφοδότηση</option>
+                                <option value="Άλλο" class="content-en">Other</option>
+                                <option value="Άλλο" class="content-gr">Άλλο</option>
                             </select>
                         </div>
 
@@ -583,6 +634,7 @@
 
                         <button type="submit" class="btn content-en">Send Message</button>
                         <button type="submit" class="btn content-gr">Στείλτε Μήνυμα</button>
+                        <p class="form-status" id="formStatus" role="status" hidden></p>
                     </form>
                 </div>
             </div>
@@ -598,8 +650,8 @@
                     <div class="hours-item">
                         <h4 class="content-en">📦 Delivery Schedule</h4>
                         <h4 class="content-gr">📦 Πρόγραμμα Παράδοσης</h4>
-                        <p class="content-en">Monday - Saturday: 9:00 - 17:00</p>
-                        <p class="content-gr">Δευτέρα - Σάββατο: 9:00 - 17:00</p>
+                        <p class="content-en">Monday - Saturday: 9:00 - 15:00</p>
+                        <p class="content-gr">Δευτέρα - Σάββατο: 9:00 - 15:00</p>
                         <p style="margin-top: 1rem; font-style: italic;" class="content-en">Call ahead for availability</p>
                         <p style="margin-top: 1rem; font-style: italic;" class="content-gr">Καλέστε εκ των προτέρων για διαθεσιμότητα</p>
                     </div>
@@ -613,10 +665,10 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <img src="images/logo.jpg" alt="Φάρμα Χαχόλα - Φρέσκα Αυγά" class="footer-logo">
-                    <h3 class="content-en">Fresh Haholas Farm Eggs</h3>
+                    <h3 class="content-en">Fresh Chacholas Farm Eggs</h3>
                     <h3 class="content-gr">Φρέσκα Αυγά Φάρμας Χαχόλα</h3>
                     <p class="content-en">Delivering fresh, quality eggs to Thessaloniki since 2026.</p>
-                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην θεσσαλονίκη από το 2026.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στη Θεσσαλονίκη από το 2026.</p>
                 </div>
                 <div class="footer-section">
                     <h3 class="content-en">Quick Links</h3>
@@ -633,14 +685,15 @@
                 <div class="footer-section">
                     <h3 class="content-en">Contact Info</h3>
                     <h3 class="content-gr">Στοιχεία Επικοινωνίας</h3>
-                    <p>📞 (555) 123-4567</p>
-                    <p>📧 info@freshfarmeggs.com</p>
-                    <p class="content-en">📍 123 Farm Road, Countryside</p>
-                    <p class="content-gr">📍 123 Δρόμος Φάρμας, Εξοχή</p>
+                    <p>📞 (+30) 6971596520</p>
+                    <p>📧 info@farmachacholas.gr</p>
+                    <a href="https://www.instagram.com/chacholas_egg_farm/" target="_blank" rel="noopener">📸 @chacholas_egg_farm</a>
+                    <p class="content-en">📍 Pentalofos, Thessaloniki</p>
+                    <p class="content-gr">📍 Πεντάλοφος, Θεσσαλονίκης</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="content-en">&copy; 2026 Fresh Haholas Farm Eggs. All rights reserved.</p>
+                <p class="content-en">&copy; 2026 Fresh Chacholas Farm Eggs. All rights reserved.</p>
                 <p class="content-gr">&copy; 2026 Φρέσκα Αυγά Φάρμας Χαχόλα. Όλα τα δικαιώματα διατηρούνται.</p>
             </div>
         </div>
@@ -669,6 +722,43 @@
         document.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('language') || 'gr';
             setLanguage(savedLang);
+        });
+
+        // Contact form: send through Web3Forms and show the result on the page
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const status = document.getElementById('formStatus');
+            const isGr = document.body.classList.contains('lang-gr');
+            const buttons = form.querySelectorAll('button[type="submit"]');
+            const text = {
+                sending: isGr ? 'Αποστολή...' : 'Sending...',
+                success: isGr ? 'Ευχαριστούμε! Το μήνυμά σας στάλθηκε. Θα επικοινωνήσουμε μαζί σας σύντομα.' : 'Thank you! Your message has been sent. We will get back to you soon.',
+                error: isGr ? 'Κάτι πήγε στραβά. Δοκιμάστε ξανά ή στείλτε μας email στο info@farmachacholas.gr.' : 'Something went wrong. Please try again or email us at info@farmachacholas.gr.'
+            };
+
+            buttons.forEach(b => b.disabled = true);
+            status.className = 'form-status';
+            status.textContent = text.sending;
+            status.hidden = false;
+
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(Object.fromEntries(new FormData(form)))
+                });
+                const data = await res.json();
+                if (!res.ok || !data.success) throw new Error(data.message);
+                status.classList.add('success');
+                status.textContent = text.success;
+                form.reset();
+            } catch (err) {
+                status.classList.add('error');
+                status.textContent = text.error;
+            } finally {
+                buttons.forEach(b => b.disabled = false);
+            }
         });
     </script>
 </body>

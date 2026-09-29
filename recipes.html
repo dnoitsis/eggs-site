@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-en="Egg Recipes - Haholas Farm" data-gr="Συνταγές - Φάρμα Χαχόλα">Συνταγές - Φάρμα Χαχόλα</title>
+    <title data-en="Egg Recipes - Chacholas Farm" data-gr="Συνταγές - Φάρμα Χαχόλα">Συνταγές - Φάρμα Χαχόλα</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -83,6 +83,15 @@
 
         .logo-accent {
             color: var(--secondary);
+            transition: color 0.3s;
+        }
+
+        .logo:hover {
+            color: var(--secondary);
+        }
+
+        .logo:hover .logo-accent {
+            color: var(--primary);
         }
 
         nav ul {
@@ -365,7 +374,7 @@
 <body class="lang-gr">
     <header>
         <nav class="container">
-            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Haholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
+            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Chacholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
             <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
             <ul>
                 <li><a href="index.html" class="content-en">Home</a></li>
@@ -395,10 +404,10 @@
 
     <section class="section recipes">
         <div class="container">
-            <h2 class="content-en">6 Ways to Cook Your Eggs</h2>
-            <h2 class="content-gr">6 τρόποι να μαγειρέψεις τα αυγά σου</h2>
+            <h2 class="content-en">8 Ways to Cook Your Eggs</h2>
+            <h2 class="content-gr">8 τρόποι να μαγειρέψεις τα αυγά σου</h2>
             <div class="recipe-cover">
-                <img src="images/recipes/00-cover.jpg" alt="6 τρόποι να μαγειρέψεις τα αυγά σου">
+                <img src="images/recipes/00-cover.jpg" alt="8 τρόποι να μαγειρέψεις τα αυγά σου">
             </div>
             <div class="recipes-grid">
                 <a class="recipe-card" href="images/recipes/01-omeleta.jpg" target="_blank">
@@ -418,6 +427,12 @@
                 </a>
                 <a class="recipe-card" href="images/recipes/06-pose.jpg" target="_blank">
                     <img src="images/recipes/06-pose.jpg" alt="Ποσέ" loading="lazy">
+                </a>
+                <a class="recipe-card" href="images/recipes/07-egg-muffins.jpg" target="_blank">
+                    <img src="images/recipes/07-egg-muffins.jpg" alt="Egg muffins" loading="lazy">
+                </a>
+                <a class="recipe-card" href="images/recipes/08-avgosalata.jpg" target="_blank">
+                    <img src="images/recipes/08-avgosalata.jpg" alt="Αυγοσαλάτα" loading="lazy">
                 </a>
             </div>
 
@@ -439,10 +454,10 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <img src="images/logo.jpg" alt="Φάρμα Χαχόλα - Φρέσκα Αυγά" class="footer-logo">
-                    <h3 class="content-en">Fresh Haholas Farm Eggs</h3>
+                    <h3 class="content-en">Fresh Chacholas Farm Eggs</h3>
                     <h3 class="content-gr">Φρέσκα Αυγά Φάρμας Χαχόλα</h3>
                     <p class="content-en">Delivering fresh, quality eggs to Thessaloniki since 2026.</p>
-                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην θεσσαλονίκη από το 2026.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στη Θεσσαλονίκη από το 2026.</p>
                 </div>
                 <div class="footer-section">
                     <h3 class="content-en">Quick Links</h3>
@@ -459,14 +474,15 @@
                 <div class="footer-section">
                     <h3 class="content-en">Contact Info</h3>
                     <h3 class="content-gr">Στοιχεία Επικοινωνίας</h3>
-                    <p>📞 (555) 123-4567</p>
-                    <p>📧 info@freshfarmeggs.com</p>
-                    <p class="content-en">📍 123 Farm Road, Countryside</p>
-                    <p class="content-gr">📍 123 Δρόμος Φάρμας, Εξοχή</p>
+                    <p>📞 (+30) 6971596520</p>
+                    <p>📧 info@farmachacholas.gr</p>
+                    <a href="https://www.instagram.com/chacholas_egg_farm/" target="_blank" rel="noopener">📸 @chacholas_egg_farm</a>
+                    <p class="content-en">📍 Pentalofos, Thessaloniki</p>
+                    <p class="content-gr">📍 Πεντάλοφος, Θεσσαλονίκης</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="content-en">&copy; 2026 Fresh Haholas Farm Eggs. All rights reserved.</p>
+                <p class="content-en">&copy; 2026 Fresh Chacholas Farm Eggs. All rights reserved.</p>
                 <p class="content-gr">&copy; 2026 Φρέσκα Αυγά Φάρμας Χαχόλα. Όλα τα δικαιώματα διατηρούνται.</p>
             </div>
         </div>

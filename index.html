@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-en="Haholas Farm - Fresh Eggs" data-gr="Φάρμα Χαχόλα - Φρέσκα Αυγά">Φάρμα Χαχόλα - Φρέσκα Αυγά</title>
+    <title data-en="Chacholas Farm - Fresh Eggs" data-gr="Φάρμα Χαχόλα - Φρέσκα Αυγά">Φάρμα Χαχόλα - Φρέσκα Αυγά</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -83,6 +83,15 @@
 
         .logo-accent {
             color: var(--secondary);
+            transition: color 0.3s;
+        }
+
+        .logo:hover {
+            color: var(--secondary);
+        }
+
+        .logo:hover .logo-accent {
+            color: var(--primary);
         }
 
         nav ul {
@@ -285,6 +294,90 @@
             color: var(--primary);
         }
 
+        /* Photo slider */
+        .slider {
+            position: relative;
+            height: 560px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            background: var(--dark);
+        }
+
+        .slider img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .slider img.active {
+            opacity: 1;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.85);
+            color: var(--dark);
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.3s;
+        }
+
+        .slider-btn:hover {
+            background: var(--secondary);
+        }
+
+        .slider-btn.prev { left: 12px; }
+        .slider-btn.next { right: 12px; }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 14px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .slider-dots button {
+            width: 11px;
+            height: 11px;
+            padding: 0;
+            border: 2px solid var(--white);
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .slider-dots button.active {
+            background: var(--white);
+        }
+
+        /* Farm gallery */
+        .farm-gallery {
+            background: var(--white);
+        }
+
+        .farm-gallery .slider {
+            max-width: 480px;
+            height: 640px;
+            margin: 0 auto;
+        }
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -381,6 +474,10 @@
                 margin: 1rem 0 0;
             }
 
+            .farm-gallery .slider {
+                height: 520px;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -394,7 +491,7 @@
 <body class="lang-gr">
     <header>
         <nav class="container">
-            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Haholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
+            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Chacholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
             <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
             <ul>
                 <li><a href="index.html" class="content-en">Home</a></li>
@@ -415,13 +512,13 @@
 
     <section class="hero">
         <div class="container hero-content">
-            <h1 class="content-en">Fresh Haholas Farm Eggs</h1>
+            <h1 class="content-en">Fresh Chacholas Farm Eggs</h1>
             <h1 class="content-gr">Φρέσκα Αυγά Φάρμας Χαχόλα</h1>
             <p class="content-en">Eggs of excellent quality</p>
             <p class="content-gr">Αυγά άριστης ποιότητας</p>
             <img src="images/logo.jpg" alt="Φάρμα Χαχόλα - Φρέσκα Αυγά" class="hero-logo">
-            <a href="recipes.html" class="btn content-en">Egg Recipes</a>
-            <a href="recipes.html" class="btn content-gr">Συνταγές με Αυγά</a>
+            <!-- <a href="recipes.html" class="btn content-en">Egg Recipes</a>
+            <a href="recipes.html" class="btn content-gr">Συνταγές με Αυγά</a> -->
         </div>
     </section>
 
@@ -455,15 +552,32 @@
         </div>
     </section>
 
+    <section class="section farm-gallery">
+        <div class="container">
+            <h2 class="content-en">Our Farm</h2>
+            <h2 class="content-gr">Η Φάρμα μας</h2>
+            <div class="slider" id="farmSlider">
+                <img src="images/about/farm-1.jpg" alt="Οι κότες μας στο κοτέτσι" class="active">
+                <img src="images/about/farm-2.jpg" alt="Φρέσκα αυγά σε θήκες" loading="lazy">
+                <img src="images/about/farm-3.jpg" alt="Φρέσκα αυγά στο χέρι μπροστά στις κότες" loading="lazy">
+                <img src="images/about/farm-4.jpg" alt="Το εσωτερικό του κοτετσιού με τις κότες" loading="lazy">
+                <img src="images/about/farm-5.jpg" alt="Ταΐστρες και ποτίστρες στο κοτέτσι" loading="lazy">
+                <button class="slider-btn prev" aria-label="Previous photo">&#8249;</button>
+                <button class="slider-btn next" aria-label="Next photo">&#8250;</button>
+                <div class="slider-dots"></div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <img src="images/logo.jpg" alt="Φάρμα Χαχόλα - Φρέσκα Αυγά" class="footer-logo">
-                    <h3 class="content-en">Fresh Haholas Farm Eggs</h3>
+                    <h3 class="content-en">Fresh Chacholas Farm Eggs</h3>
                     <h3 class="content-gr">Φρέσκα Αυγά Φάρμας Χαχόλα</h3>
                     <p class="content-en">Delivering fresh, quality eggs to Thessaloniki since 2026.</p>
-                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην θεσσαλονίκη από το 2026.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στη Θεσσαλονίκη από το 2026.</p>
                 </div>
                 <div class="footer-section">
                     <h3 class="content-en">Quick Links</h3>
@@ -480,14 +594,15 @@
                 <div class="footer-section">
                     <h3 class="content-en">Contact Info</h3>
                     <h3 class="content-gr">Στοιχεία Επικοινωνίας</h3>
-                    <p>📞 (555) 123-4567</p>
-                    <p>📧 info@freshfarmeggs.com</p>
-                    <p class="content-en">📍 123 Farm Road, Countryside</p>
-                    <p class="content-gr">📍 123 Δρόμος Φάρμας, Εξοχή</p>
+                    <p>📞 (+30) 6971596520</p>
+                    <p>📧 info@farmachacholas.gr</p>
+                    <a href="https://www.instagram.com/chacholas_egg_farm/" target="_blank" rel="noopener">📸 @chacholas_egg_farm</a>
+                    <p class="content-en">📍 Pentalofos, Thessaloniki</p>
+                    <p class="content-gr">📍 Πεντάλοφος, Θεσσαλονίκης</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="content-en">&copy; 2026 Fresh Haholas Farm Eggs. All rights reserved.</p>
+                <p class="content-en">&copy; 2026 Fresh Chacholas Farm Eggs. All rights reserved.</p>
                 <p class="content-gr">&copy; 2026 Φρέσκα Αυγά Φάρμας Χαχόλα. Όλα τα δικαιώματα διατηρούνται.</p>
             </div>
         </div>
@@ -516,7 +631,54 @@
         document.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('language') || 'gr';
             setLanguage(savedLang);
+            initSlider(document.getElementById('farmSlider'));
         });
+
+        // Photo slider: auto-advances, pauses on hover, supports arrows, dots and swipe
+        function initSlider(slider) {
+            const slides = slider.querySelectorAll('img');
+            const dotsBox = slider.querySelector('.slider-dots');
+            let current = 0;
+            let timer;
+
+            slides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.setAttribute('aria-label', 'Photo ' + (i + 1));
+                dot.addEventListener('click', () => { show(i); restart(); });
+                dotsBox.appendChild(dot);
+            });
+            const dots = dotsBox.querySelectorAll('button');
+
+            function show(i) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (i + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            function restart() {
+                clearInterval(timer);
+                timer = setInterval(() => show(current + 1), 4000);
+            }
+
+            slider.querySelector('.prev').addEventListener('click', () => { show(current - 1); restart(); });
+            slider.querySelector('.next').addEventListener('click', () => { show(current + 1); restart(); });
+            slider.addEventListener('mouseenter', () => clearInterval(timer));
+            slider.addEventListener('mouseleave', restart);
+
+            let startX = null;
+            slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+            slider.addEventListener('touchend', e => {
+                if (startX === null) return;
+                const dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dx) > 40) { show(current + (dx < 0 ? 1 : -1)); restart(); }
+                startX = null;
+            });
+
+            show(0);
+            restart();
+        }
     </script>
 </body>
 </html>
