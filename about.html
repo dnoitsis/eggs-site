@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Fresh Farm Eggs</title>
+    <title data-en="About Us - Haholas Farm" data-gr="Σχετικά - Φάρμα Χαχόλα">Σχετικά - Φάρμα Χαχόλα</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #8B4513;
             --secondary: #DAA520;
-            --accent: #228B22;
+            --accent: #1A6B1A;
             --light: #FFF8DC;
             --white: #FFFFFF;
-            --dark: #2F4F2F;
+            --dark: #263F26;
             --gray: #708090;
         }
 
@@ -54,12 +54,34 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: auto;
+            padding: 0;
+            text-decoration: none;
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
         }
 
-        .logo span {
+        .logo img {
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+        }
+
+        .footer-logo {
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            padding: 4px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        .logo-accent {
             color: var(--secondary);
         }
 
@@ -197,14 +219,77 @@
             line-height: 1.8;
         }
 
-        .about-image {
-            height: 400px;
-            background: linear-gradient(45deg, #FFE4B5, #DEB887);
+        /* Photo slider */
+        .slider {
+            position: relative;
+            height: 560px;
             border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            background: var(--dark);
+        }
+
+        .slider img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .slider img.active {
+            opacity: 1;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.85);
+            color: var(--dark);
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.3s;
+        }
+
+        .slider-btn:hover {
+            background: var(--secondary);
+        }
+
+        .slider-btn.prev { left: 12px; }
+        .slider-btn.next { right: 12px; }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 14px;
+            left: 0;
+            right: 0;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .slider-dots button {
+            width: 11px;
+            height: 11px;
+            padding: 0;
+            border: 2px solid var(--white);
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .slider-dots button.active {
+            background: var(--white);
         }
 
         /* Values */
@@ -293,6 +378,15 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo img {
+                height: 40px;
+                width: 40px;
+            }
+
             .menu-toggle {
                 display: block;
             }
@@ -345,6 +439,10 @@
                 gap: 2rem;
             }
 
+            .slider {
+                height: 460px;
+            }
+
             .section {
                 padding: 60px 0;
             }
@@ -354,15 +452,13 @@
 <body class="lang-gr">
     <header>
         <nav class="container">
-            <div class="logo">Fresh Farm <span>Eggs</span></div>
+            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Haholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
             <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
             <ul>
                 <li><a href="index.html" class="content-en">Home</a></li>
                 <li><a href="index.html" class="content-gr">Αρχική</a></li>
                 <li><a href="about.html" class="active content-en">About</a></li>
                 <li><a href="about.html" class="active content-gr">Σχετικά</a></li>
-                <li><a href="products.html" class="content-en">Products</a></li>
-                <li><a href="products.html" class="content-gr">Προϊόντα</a></li>
                 <li><a href="recipes.html" class="content-en">Recipes</a></li>
                 <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
                 <li><a href="contact.html" class="content-en">Contact</a></li>
@@ -390,15 +486,22 @@
                 <div class="about-text">
                     <h3 class="content-en">Our Family Farm Story</h3>
                     <h3 class="content-gr">Η Ιστορία της Φάρμας της Οικογένειάς μας</h3>
-                    <p class="content-en">Founded in 2020, Fresh Farm Eggs began as a small family operation with just a few dozen chickens. Today, we're proud to be a leading provider of premium quality eggs in our community, maintaining the same commitment to excellence that started it all.</p>
-                    <p class="content-gr">Ιδρύθηκε το 2020, τα Φρέσκα Αυγά Φάρμας ξεκίνησαν ως μια μικρή οικογενειακή επιχείρηση με μόλις λίγες δεκάδες κότες. Σήμερα, είμαστε περήφανοι που είμαστε κορυφαίος προμηθευτής αυγών premium ποιότητας στην κοινότητά μας, διατηρώντας την ίδια αφοσίωση στην αριστεία που ξεκίνησε τα πάντα.</p>
+                    <p class="content-en">Founded in 2026, Fresh Farm Eggs began as a small family operation with just a few dozen chickens. Today, we're proud to be a leading provider of premium quality eggs in our community, maintaining the same commitment to excellence that started it all.</p>
+                    <p class="content-gr">Ιδρύθηκε το 2026, τα Φρέσκα Αυγά Φάρμας ξεκίνησαν ως μια μικρή οικογενειακή επιχείρηση με μόλις λίγες δεκάδες κότες. Σήμερα, είμαστε περήφανοι που είμαστε κορυφαίος προμηθευτής αυγών premium ποιότητας στην κοινότητά μας, διατηρώντας την ίδια αφοσίωση στην αριστεία που ξεκίνησε τα πάντα.</p>
                     <p class="content-en">Our farm spans over 50 acres of beautiful countryside, where our chickens roam freely in spacious coops and pasture areas. We believe that happy, healthy chickens produce the best eggs, and that's why we prioritize their welfare above all else.</p>
                     <p class="content-gr">Η φάρμα μας εκτείνεται σε περισσότερα από 50 στρέμματα όμορφης εξοχής, όπου οι κότες μας περιφέρονται ελεύθερα σε ευρύχωρα κοτέτσια και περιοχές βοσκής. Πιστεύουμε ότι ευτυχισμένες, υγιείς κότες παράγουν τα καλύτερα αυγά, και γι' αυτό προτεραιοποιούμε την ευημερία τους πάνω από όλα.</p>
                     <p class="content-en">Every morning, our eggs are collected by hand and delivered fresh to local stores and restaurants. We never use artificial hormones, antibiotics, or pesticides, ensuring that our eggs are as natural as they come.</p>
                     <p class="content-gr">Κάθε πρωί, τα αυγά μας συλλέγονται με το χέρι και παραδίδονται φρέσκα σε τοπικά καταστήματα και εστιατόρια. Δεν χρησιμοποιούμε ποτέ τεχνητές ορμόνες, αντιβιοτικά ή φυτοφάρμακα, διασφαλίζοντας ότι τα αυγά μας είναι τόσο φυσικά όσο μπορούν να είναι.</p>
                 </div>
-                <div class="about-image">
-                    🏡
+                <div class="slider" id="farmSlider">
+                    <img src="images/about/farm-1.jpg" alt="Οι κότες μας στο κοτέτσι" class="active">
+                    <img src="images/about/farm-2.jpg" alt="Φρέσκα αυγά σε θήκες" loading="lazy">
+                    <img src="images/about/farm-3.jpg" alt="Φρέσκα αυγά στο χέρι μπροστά στις κότες" loading="lazy">
+                    <img src="images/about/farm-4.jpg" alt="Το εσωτερικό του κοτετσιού με τις κότες" loading="lazy">
+                    <img src="images/about/farm-5.jpg" alt="Ταΐστρες και ποτίστρες στο κοτέτσι" loading="lazy">
+                    <button class="slider-btn prev" aria-label="Previous photo">&#8249;</button>
+                    <button class="slider-btn next" aria-label="Next photo">&#8250;</button>
+                    <div class="slider-dots"></div>
                 </div>
             </div>
         </div>
@@ -445,10 +548,11 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 class="content-en">Fresh Farm Eggs</h3>
-                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας</h3>
-                    <p class="content-en">Delivering fresh, quality eggs to your community since 2020.</p>
-                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην κοινότητά σας από το 2020.</p>
+                    <img src="images/logo.jpg" alt="Φάρμα Χαχόλα - Φρέσκα Αυγά" class="footer-logo">
+                    <h3 class="content-en">Fresh Haholas Farm Eggs</h3>
+                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας Χαχόλα</h3>
+                    <p class="content-en">Delivering fresh, quality eggs to Thessaloniki since 2026.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην θεσσαλονίκη από το 2026.</p>
                 </div>
                 <div class="footer-section">
                     <h3 class="content-en">Quick Links</h3>
@@ -456,8 +560,6 @@
                     <ul>
                         <li><a href="about.html" class="content-en">About Us</a></li>
                         <li><a href="about.html" class="content-gr">Σχετικά με Εμάς</a></li>
-                        <li><a href="products.html" class="content-en">Our Products</a></li>
-                        <li><a href="products.html" class="content-gr">Τα Προϊόντα μας</a></li>
                         <li><a href="recipes.html" class="content-en">Recipes</a></li>
                         <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
                         <li><a href="contact.html" class="content-en">Contact</a></li>
@@ -474,14 +576,16 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="content-en">&copy; 2024 Fresh Farm Eggs. All rights reserved.</p>
-                <p class="content-gr">&copy; 2024 Φρέσκα Αυγά Φάρμας. Όλα τα δικαιώματα διατηρούνται.</p>
+                <p class="content-en">&copy; 2026 Fresh Haholas Farm Eggs. All rights reserved.</p>
+                <p class="content-gr">&copy; 2026 Φρέσκα Αυγά Φάρμας Χαχόλα. Όλα τα δικαιώματα διατηρούνται.</p>
             </div>
         </div>
     </footer>
     <script>
         function setLanguage(lang) {
             document.body.className = lang === 'gr' ? 'lang-gr' : '';
+            const titleEl = document.querySelector('title');
+            document.title = titleEl.dataset[lang] || document.title;
             localStorage.setItem('language', lang);
             updateLanguageButtons(lang);
         }
@@ -501,7 +605,54 @@
         document.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('language') || 'gr';
             setLanguage(savedLang);
+            initSlider(document.getElementById('farmSlider'));
         });
+
+        // Photo slider: auto-advances, pauses on hover, supports arrows, dots and swipe
+        function initSlider(slider) {
+            const slides = slider.querySelectorAll('img');
+            const dotsBox = slider.querySelector('.slider-dots');
+            let current = 0;
+            let timer;
+
+            slides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.setAttribute('aria-label', 'Photo ' + (i + 1));
+                dot.addEventListener('click', () => { show(i); restart(); });
+                dotsBox.appendChild(dot);
+            });
+            const dots = dotsBox.querySelectorAll('button');
+
+            function show(i) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (i + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            function restart() {
+                clearInterval(timer);
+                timer = setInterval(() => show(current + 1), 4000);
+            }
+
+            slider.querySelector('.prev').addEventListener('click', () => { show(current - 1); restart(); });
+            slider.querySelector('.next').addEventListener('click', () => { show(current + 1); restart(); });
+            slider.addEventListener('mouseenter', () => clearInterval(timer));
+            slider.addEventListener('mouseleave', restart);
+
+            let startX = null;
+            slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+            slider.addEventListener('touchend', e => {
+                if (startX === null) return;
+                const dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dx) > 40) { show(current + (dx < 0 ? 1 : -1)); restart(); }
+                startX = null;
+            });
+
+            show(0);
+            restart();
+        }
     </script>
 </body>
 </html>

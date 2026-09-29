@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fresh Farm Eggs - Premium Quality Eggs</title>
+    <title data-en="Haholas Farm - Fresh Eggs" data-gr="Φάρμα Χαχόλα - Φρέσκα Αυγά">Φάρμα Χαχόλα - Φρέσκα Αυγά</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #8B4513;
             --secondary: #DAA520;
-            --accent: #228B22;
+            --accent: #1A6B1A;
             --light: #FFF8DC;
             --white: #FFFFFF;
-            --dark: #2F4F2F;
+            --dark: #263F26;
             --gray: #708090;
         }
 
@@ -54,12 +54,34 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: auto;
+            padding: 0;
+            text-decoration: none;
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
         }
 
-        .logo span {
+        .logo img {
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+        }
+
+        .footer-logo {
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            padding: 4px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        .logo-accent {
             color: var(--secondary);
         }
 
@@ -170,6 +192,18 @@
             opacity: 0.9;
         }
 
+        .hero-logo {
+            display: block;
+            width: 200px;
+            max-width: 60%;
+            height: auto;
+            margin: 0 auto 2rem;
+            padding: 8px;
+            background: var(--white);
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
         .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -251,48 +285,6 @@
             color: var(--primary);
         }
 
-        /* Products Preview */
-        .products-preview {
-            background: var(--light);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            height: 200px;
-            background: linear-gradient(45deg, #FFE4B5, #DEB887);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .product-info h4 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
         /* Footer */
         footer {
             background: var(--dark);
@@ -337,6 +329,15 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo img {
+                height: 40px;
+                width: 40px;
+            }
+
             .menu-toggle {
                 display: block;
             }
@@ -393,15 +394,13 @@
 <body class="lang-gr">
     <header>
         <nav class="container">
-            <div class="logo">Fresh Farm <span>Eggs</span></div>
+            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Haholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
             <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
             <ul>
                 <li><a href="index.html" class="content-en">Home</a></li>
                 <li><a href="index.html" class="content-gr">Αρχική</a></li>
                 <li><a href="about.html" class="content-en">About</a></li>
                 <li><a href="about.html" class="content-gr">Σχετικά</a></li>
-                <li><a href="products.html" class="content-en">Products</a></li>
-                <li><a href="products.html" class="content-gr">Προϊόντα</a></li>
                 <li><a href="recipes.html" class="content-en">Recipes</a></li>
                 <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
                 <li><a href="contact.html" class="content-en">Contact</a></li>
@@ -416,12 +415,13 @@
 
     <section class="hero">
         <div class="container hero-content">
-            <h1 class="content-en">Fresh Farm Eggs</h1>
-            <h1 class="content-gr">Φρέσκα Αυγά Φάρμας</h1>
-            <p class="content-en">Premium quality eggs from our family farm to your table</p>
-            <p class="content-gr">Αυγά premium ποιότητας από τη φάρμα μας στην οικογένειά σας</p>
-            <a href="products.html" class="btn content-en">Shop Our Eggs</a>
-            <a href="products.html" class="btn content-gr">Αγοράστε τα Αυγά μας</a>
+            <h1 class="content-en">Fresh Haholas Farm Eggs</h1>
+            <h1 class="content-gr">Φρέσκα Αυγά Φάρμας Χαχόλα</h1>
+            <p class="content-en">Eggs of excellent quality</p>
+            <p class="content-gr">Αυγά άριστης ποιότητας</p>
+            <img src="images/logo.jpg" alt="Φάρμα Χαχόλα - Φρέσκα Αυγά" class="hero-logo">
+            <a href="recipes.html" class="btn content-en">Egg Recipes</a>
+            <a href="recipes.html" class="btn content-gr">Συνταγές με Αυγά</a>
         </div>
     </section>
 
@@ -434,63 +434,23 @@
                     <div class="feature-icon">🥚</div>
                     <h3 class="content-en">Fresh Daily</h3>
                     <h3 class="content-gr">Φρέσκα Καθημερινά</h3>
-                    <p class="content-en">Our eggs are collected fresh every morning from our free-range hens.</p>
-                    <p class="content-gr">Τα αυγά μας συλλέγονται φρέσκα κάθε πρωί από τις ελεύθερες κότες μας.</p>
+                    <p class="content-en">Our eggs are collected fresh every morning from our barn.</p>
+                    <p class="content-gr">Τα αυγά μας συλλέγονται φρέσκα κάθε πρωί από τον αχυρώνα μας.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌱</div>
-                    <h3 class="content-en">Natural Feed</h3>
-                    <h3 class="content-gr">Φυσική Τροφή</h3>
-                    <p class="content-en">Our chickens are fed with natural grains and have access to pasture.</p>
-                    <p class="content-gr">Οι κότες μας τρέφονται με φυσικά δημητριακά και έχουν πρόσβαση σε βοσκότοπους.</p>
+                    <h3 class="content-en">Quality Feed</h3>
+                    <h3 class="content-gr">Ποιοτική Τροφή</h3>
+                    <p class="content-en">Our chickens are fed with top-quality feed, ensuring eggs of high nutritional value.</p>
+                    <p class="content-gr">Οι κότες μας τρέφονται με άριστης ποιότητας ζωοτροφές εξασφαλίζοντας αυγά υψηλής διατροφικής αξίας.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3 class="content-en">Premium Quality</h3>
-                    <h3 class="content-gr">Premium Ποιότητα</h3>
-                    <p class="content-en">Only the highest quality eggs make it to your table.</p>
-                    <p class="content-gr">Μόνο τα αυγά υψηλότερης ποιότητας φτάνουν στο τραπέζι σας.</p>
+                    <div class="feature-icon">🚚</div>
+                    <h3 class="content-en">Deliveries</h3>
+                    <h3 class="content-gr">Παραδώσεις</h3>
+                    <p class="content-en">Immediate delivery throughout Thessaloniki to professionals and private individuals.</p>
+                    <p class="content-gr">Άμεση παράδωση σε όλη την θεσσαλονίκη σε επαγγελματίες και ιδιώτες.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section products-preview">
-        <div class="container">
-            <h2 class="content-en">Our Popular Products</h2>
-            <h2 class="content-gr">Τα Δημοφιλή Προϊόντα μας</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">🥚</div>
-                    <div class="product-info">
-                        <h4 class="content-en">Free Range Eggs</h4>
-                        <h4 class="content-gr">Αυγά Ελεύθερης Βοσκής</h4>
-                        <p class="content-en">Large, Grade A eggs from happy hens</p>
-                        <p class="content-gr">Μεγάλα αυγά κατηγορίας Α από ευτυχισμένες κότες</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">🌿</div>
-                    <div class="product-info">
-                        <h4 class="content-en">Organic Eggs</h4>
-                        <h4 class="content-gr">Βιολογικά Αυγά</h4>
-                        <p class="content-en">Certified organic, no pesticides or chemicals</p>
-                        <p class="content-gr">Πιστοποιημένα βιολογικά, χωρίς φυτοφάρμακα ή χημικά</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">💪</div>
-                    <div class="product-info">
-                        <h4 class="content-en">Omega-3 Eggs</h4>
-                        <h4 class="content-gr">Αυγά με Ωμέγα-3</h4>
-                        <p class="content-en">Enhanced with omega-3 fatty acids</p>
-                        <p class="content-gr">Εμπλουτισμένα με ωμέγα-3 λιπαρά οξέα</p>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="products.html" class="btn content-en">View All Products</a>
-                <a href="products.html" class="btn content-gr">Δείτε Όλα τα Προϊόντα</a>
             </div>
         </div>
     </section>
@@ -499,10 +459,11 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 class="content-en">Fresh Farm Eggs</h3>
-                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας</h3>
-                    <p class="content-en">Delivering fresh, quality eggs to your community since 2020.</p>
-                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην κοινότητά σας από το 2020.</p>
+                    <img src="images/logo.jpg" alt="Φάρμα Χαχόλα - Φρέσκα Αυγά" class="footer-logo">
+                    <h3 class="content-en">Fresh Haholas Farm Eggs</h3>
+                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας Χαχόλα</h3>
+                    <p class="content-en">Delivering fresh, quality eggs to Thessaloniki since 2026.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην θεσσαλονίκη από το 2026.</p>
                 </div>
                 <div class="footer-section">
                     <h3 class="content-en">Quick Links</h3>
@@ -510,8 +471,6 @@
                     <ul>
                         <li><a href="about.html" class="content-en">About Us</a></li>
                         <li><a href="about.html" class="content-gr">Σχετικά με Εμάς</a></li>
-                        <li><a href="products.html" class="content-en">Our Products</a></li>
-                        <li><a href="products.html" class="content-gr">Τα Προϊόντα μας</a></li>
                         <li><a href="recipes.html" class="content-en">Recipes</a></li>
                         <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
                         <li><a href="contact.html" class="content-en">Contact</a></li>
@@ -528,14 +487,16 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="content-en">&copy; 2024 Fresh Farm Eggs. All rights reserved.</p>
-                <p class="content-gr">&copy; 2024 Φρέσκα Αυγά Φάρμας. Όλα τα δικαιώματα διατηρούνται.</p>
+                <p class="content-en">&copy; 2026 Fresh Haholas Farm Eggs. All rights reserved.</p>
+                <p class="content-gr">&copy; 2026 Φρέσκα Αυγά Φάρμας Χαχόλα. Όλα τα δικαιώματα διατηρούνται.</p>
             </div>
         </div>
     </footer>
     <script>
         function setLanguage(lang) {
             document.body.className = lang === 'gr' ? 'lang-gr' : '';
+            const titleEl = document.querySelector('title');
+            document.title = titleEl.dataset[lang] || document.title;
             localStorage.setItem('language', lang);
             updateLanguageButtons(lang);
         }

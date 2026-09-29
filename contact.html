@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Fresh Farm Eggs</title>
+    <title data-en="Contact - Haholas Farm" data-gr="Επικοινωνία - Φάρμα Χαχόλα">Επικοινωνία - Φάρμα Χαχόλα</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #8B4513;
             --secondary: #DAA520;
-            --accent: #228B22;
+            --accent: #1A6B1A;
             --light: #FFF8DC;
             --white: #FFFFFF;
-            --dark: #2F4F2F;
+            --dark: #263F26;
             --gray: #708090;
         }
 
@@ -54,12 +54,34 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: auto;
+            padding: 0;
+            text-decoration: none;
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
         }
 
-        .logo span {
+        .logo img {
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+        }
+
+        .footer-logo {
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            padding: 4px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        .logo-accent {
             color: var(--secondary);
         }
 
@@ -297,7 +319,10 @@
 
         .hours-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -363,6 +388,15 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo img {
+                height: 40px;
+                width: 40px;
+            }
+
             .menu-toggle {
                 display: block;
             }
@@ -432,15 +466,13 @@
 <body class="lang-gr">
     <header>
         <nav class="container">
-            <div class="logo">Fresh Farm <span>Eggs</span></div>
+            <a href="index.html" class="logo"><img src="images/logo.jpg" alt="Φάρμα Χαχόλα"><span class="content-en">Haholas Farm <span class="logo-accent">Fresh Eggs</span></span><span class="content-gr">Φρέσκα Αυγά <span class="logo-accent">Φάρμας Χαχόλα</span></span></a>
             <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
             <ul>
                 <li><a href="index.html" class="content-en">Home</a></li>
                 <li><a href="index.html" class="content-gr">Αρχική</a></li>
                 <li><a href="about.html" class="content-en">About</a></li>
                 <li><a href="about.html" class="content-gr">Σχετικά</a></li>
-                <li><a href="products.html" class="content-en">Products</a></li>
-                <li><a href="products.html" class="content-gr">Προϊόντα</a></li>
                 <li><a href="recipes.html" class="content-en">Recipes</a></li>
                 <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
                 <li><a href="contact.html" class="active content-en">Contact</a></li>
@@ -455,10 +487,10 @@
 
     <section class="hero">
         <div class="container">
-            <h1 class="content-en">Contact Fresh Farm Eggs</h1>
-            <h1 class="content-gr">Επικοινωνήστε με τα Φρέσκα Αυγά Φάρμας</h1>
+            <h1 class="content-en">Contact Fresh Haholas Farm Eggs</h1>
+            <h1 class="content-gr">Επικοινωνήστε με τα Φρέσκα Αυγά Φάρμας Χαχόλα</h1>
             <p class="content-en">Get in touch with us for fresh eggs and farm information</p>
-            <p class="content-gr">Επικοινωνήστε μαζί μας για φρέσκα αυγά και πληροφορίες φάρμας</p>
+            <p class="content-gr">Επικοινωνήστε μαζί μας για φρέσκα αυγά και πληροφορίες της φάρμας</p>
         </div>
     </section>
 
@@ -468,8 +500,8 @@
             <h2 class="content-gr">Επικοινωνήστε Μαζί μας</h2>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h3 class="content-en">Visit Our Farm</h3>
-                    <h3 class="content-gr">Επισκεφθείτε τη Φάρμα μας</h3>
+                    <h3 class="content-en">Details of our Farm</h3>
+                    <h3 class="content-gr">Στοιχεία της Φάρμα μας</h3>
 
                     <div class="contact-item">
                         <div class="contact-icon">📍</div>
@@ -504,8 +536,8 @@
                         <div class="contact-details">
                             <h4 class="content-en">Delivery</h4>
                             <h4 class="content-gr">Παράδοση</h4>
-                            <p class="content-en">We deliver to local stores and offer pickup from our farm stand.</p>
-                            <p class="content-gr">Παραδίδουμε σε τοπικά καταστήματα και προσφέρουμε παραλαβή από το περίπτερό μας.</p>
+                            <p class="content-en">We deliver to local stores.</p>
+                            <p class="content-gr">Παραδίδουμε σε τοπικά καταστήματα.</p>
                         </div>
                     </div>
                 </div>
@@ -536,8 +568,6 @@
                                 <option value="order" class="content-gr">Κάντε μια Παραγγελία</option>
                                 <option value="wholesale" class="content-en">Wholesale Inquiry</option>
                                 <option value="wholesale" class="content-gr">Χονδρική Ερώτηση</option>
-                                <option value="farm-visit" class="content-en">Farm Visit</option>
-                                <option value="farm-visit" class="content-gr">Επίσκεψη Φάρμας</option>
                                 <option value="feedback" class="content-en">Feedback</option>
                                 <option value="feedback" class="content-gr">Ανατροφοδότηση</option>
                                 <option value="other" class="content-en">Other</option>
@@ -566,36 +596,13 @@
                 <h2 class="content-gr">Ώρες Φάρμας & Πληροφορίες</h2>
                 <div class="hours-grid">
                     <div class="hours-item">
-                        <h4 class="content-en">🏪 Farm Stand</h4>
-                        <h4 class="content-gr">🏪 Περίπτερο Φάρμας</h4>
-                        <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                        <p>Saturday: 7:00 AM - 5:00 PM</p>
-                        <p>Sunday: 9:00 AM - 4:00 PM</p>
-                        <p style="margin-top: 1rem; font-style: italic;" class="content-en">Fresh eggs available daily</p>
-                        <p style="margin-top: 1rem; font-style: italic;" class="content-gr">Φρέσκα αυγά διαθέσιμα καθημερινά</p>
-                    </div>
-
-                    <div class="hours-item">
                         <h4 class="content-en">📦 Delivery Schedule</h4>
                         <h4 class="content-gr">📦 Πρόγραμμα Παράδοσης</h4>
-                        <p>Tuesday & Thursday: Local delivery</p>
-                        <p>Friday: Wholesale delivery</p>
-                        <p>Saturday: Farmers market</p>
+                        <p class="content-en">Monday - Saturday: 9:00 - 17:00</p>
+                        <p class="content-gr">Δευτέρα - Σάββατο: 9:00 - 17:00</p>
                         <p style="margin-top: 1rem; font-style: italic;" class="content-en">Call ahead for availability</p>
                         <p style="margin-top: 1rem; font-style: italic;" class="content-gr">Καλέστε εκ των προτέρων για διαθεσιμότητα</p>
                     </div>
-                </div>
-
-                <div style="margin-top: 3rem; text-align: center;">
-                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--gray);" class="content-en">
-                        Want to visit our farm? We offer guided tours by appointment.
-                    </p>
-                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--gray);" class="content-gr">
-                        Θέλετε να επισκεφθείτε τη φάρμα μας; Προσφέρουμε ξεναγήσεις με ραντεβού.
-                    </p>
-                    <a href="mailto:info@freshfarmeggs.com?subject=Farm%20Tour%20Inquiry" class="btn content-en">Schedule a Tour</a>
-                    <a href="mailto:info@freshfarmeggs.com?subject=Farm%20Tour%20Inquiry" class="btn content-gr">Κλείστε μια Ξενάγηση</a>
-                </div>
                 </div>
             </div>
         </div>
@@ -605,10 +612,11 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 class="content-en">Fresh Farm Eggs</h3>
-                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας</h3>
-                    <p class="content-en">Delivering fresh, quality eggs to your community since 2020.</p>
-                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην κοινότητά σας από το 2020.</p>
+                    <img src="images/logo.jpg" alt="Φάρμα Χαχόλα - Φρέσκα Αυγά" class="footer-logo">
+                    <h3 class="content-en">Fresh Haholas Farm Eggs</h3>
+                    <h3 class="content-gr">Φρέσκα Αυγά Φάρμας Χαχόλα</h3>
+                    <p class="content-en">Delivering fresh, quality eggs to Thessaloniki since 2026.</p>
+                    <p class="content-gr">Παραδίδουμε φρέσκα, ποιοτικά αυγά στην θεσσαλονίκη από το 2026.</p>
                 </div>
                 <div class="footer-section">
                     <h3 class="content-en">Quick Links</h3>
@@ -616,8 +624,6 @@
                     <ul>
                         <li><a href="about.html" class="content-en">About Us</a></li>
                         <li><a href="about.html" class="content-gr">Σχετικά με Εμάς</a></li>
-                        <li><a href="products.html" class="content-en">Our Products</a></li>
-                        <li><a href="products.html" class="content-gr">Τα Προϊόντα μας</a></li>
                         <li><a href="recipes.html" class="content-en">Recipes</a></li>
                         <li><a href="recipes.html" class="content-gr">Συνταγές</a></li>
                         <li><a href="contact.html" class="content-en">Contact</a></li>
@@ -634,14 +640,16 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="content-en">&copy; 2024 Fresh Farm Eggs. All rights reserved.</p>
-                <p class="content-gr">&copy; 2024 Φρέσκα Αυγά Φάρμας. Όλα τα δικαιώματα διατηρούνται.</p>
+                <p class="content-en">&copy; 2026 Fresh Haholas Farm Eggs. All rights reserved.</p>
+                <p class="content-gr">&copy; 2026 Φρέσκα Αυγά Φάρμας Χαχόλα. Όλα τα δικαιώματα διατηρούνται.</p>
             </div>
         </div>
     </footer>
     <script>
         function setLanguage(lang) {
             document.body.className = lang === 'gr' ? 'lang-gr' : '';
+            const titleEl = document.querySelector('title');
+            document.title = titleEl.dataset[lang] || document.title;
             localStorage.setItem('language', lang);
             updateLanguageButtons(lang);
         }
